@@ -1,10 +1,9 @@
-<link rel="stylesheet" href="../style.css">
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
     <title>Contact Me</title>
 </head>
 <body>
@@ -19,13 +18,16 @@
 
     <h1>Contact Me</h1>
     <form action="mailto:tvidyala@ucsd.edu" method="post" enctype="text/plain">
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email"><br><br>
-        <label for="subject">Subject:</label><br>
-        <input type="text" id="subject" name="subject"><br><br>
-        <label for="body">Message:</label><br>
-        <textarea id="body" name="body" rows="5" cols="30"></textarea><br><br>
-        <button type="submit">Send</button>
+        <label>Email:
+            <input type="email" name="email">
+        </label><br><br>
+        <label>Subject:
+            <input name="subject">
+        </label><br><br>
+        <label>Message:
+            <textarea name="body" rows="5" cols="30"></textarea>
+        </label><br><br>
+        <button>Send</button>
     </form>
 </body>
 </html>
