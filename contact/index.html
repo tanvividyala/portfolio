@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../style.css">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +13,19 @@
             <li><a href="../index.html">Home</a></li>
             <li><a href="../projects/index.html">Projects</a></li>
             <li><a href="index.html">Contact</a></li>
+            <li><a href="../resume/index.html">Resume</a></li>
         </ul>
     </nav>
 
     <h1>Contact Me</h1>
-    <p>You can reach me at <a href="mailto:tvidyala@ucsd.edu">tvidyala[at]ucsd[dot]edu</a>.</p>
-
+    <form action="mailto:tvidyala@ucsd.edu" method="post" enctype="text/plain">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="subject">Subject:</label><br>
+        <input type="text" id="subject" name="subject"><br><br>
+        <label for="body">Message:</label><br>
+        <textarea id="body" name="body" rows="5" cols="30"></textarea><br><br>
+        <button type="submit"></button>Send</button>
+    </form>
 </body>
 </html>
