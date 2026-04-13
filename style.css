@@ -1,16 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
+
 :root {
-  --color-accent: oklch(55% 25% 15);
+  --color-accent: oklch(54.471% 0.12757 22.203);
 }
 
 body {
   /* Set line height to 1.5 times the font size
 	   and use the OS's UI font as the website font
 	 */
-  font: 100%/1.5 system-ui;
+  font: 100%/1.5 'Space Grotesk', system-ui;
   max-width: 100ch;
   margin-inline: auto;
   padding: 2rem;
   accent-color: var(--color-accent);
+  background-color: #fffaf6;
+  color: #463e40;
 }
 
 nav ul {
@@ -92,11 +96,11 @@ h1 {
 }
 
 a {
-  color: oklch(45% 10% 190);
+  color: oklch(58.385% 0.09045 146.605);
 }
 
 a:hover {
-  color: oklch(35% 15% 190);
+  color: oklch(73.613% 0.10638 147.048);
 }
 
 section {
