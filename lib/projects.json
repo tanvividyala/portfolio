@@ -1,8 +1,44 @@
 [
     {
-    "title": "Lorem ipsum dolor sit.",
-    "year": "2024",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit."
+    "title": "SolarIQ",
+    "year": "2026",
+    "image": "https://cdni.iconscout.com/illustration/premium/thumb/solar-power-plant-illustration-svg-download-png-9149237.png",
+    "description": "Business intelligence dashboard for ZenPower."
+    },
+
+    {
+    "title": "Convolyzer",
+    "year": "2026",
+    "image": "https://cdn.creazilla.com/cliparts/7928265/speech-balloon-clipart-original.png",
+    "description": "Message history and visualization tool hosted on Streamlit."
+    },
+
+    {
+    "title": "Dexteria Optimization Report",
+    "year": "2025",
+    "image": "https://cdn-icons-png.flaticon.com/512/3063/3063198.png",
+    "description": "Improving occupational therapy app engagement through analytics insights."
+    },
+
+    {
+    "title": "Creators of Human-like AI Weigh in on Ethics And Neurodivergence",
+    "year": "2025",
+    "image": "https://cdn-icons-png.freepik.com/512/12443/12443802.png",
+    "description": "ACM FaaCT 2025 paper uncovering missed accessibility gaps in human-like AI systems."
+    },
+
+    {
+    "title": "High-Context vs. Low-Context Sensitivity in LLMs",
+    "year": "2025",
+    "image": "https://png.pngtree.com/png-vector/20221024/ourmid/pngtree-global-travel-site-language-vector-png-image_34387518.png",
+    "description": "Do LLMs assign significantly lower surprisal to low-context speech acts compared to high-context equivalents?"
+    },
+
+    {
+    "title": "Hype vs. Hyperpigmentation",
+    "year": "2025",
+    "image": "https://png.pngtree.com/png-clipart/20220729/ourmid/pngtree-skincare-routine-png-image_6092051.png",
+    "description": "Comparing cultural trends in skincare marketing with data analysis."
     }
 ]
+
