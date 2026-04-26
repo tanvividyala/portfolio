@@ -9,7 +9,7 @@ body {
   /* Set line height to 1.5 times the font size
 	   and use the OS's UI font as the website font
 	 */
-  font: 100%/1.5 'Space Grotesk', system-ui;
+  font: 100%/1.5 'Host Grotesk', system-ui;
   max-width: 100ch;
   margin-inline: auto;
   padding: 2rem;
@@ -133,6 +133,29 @@ a {
 
 a:hover {
   color: oklch(73.613% 0.10638 147.048);
+}
+
+#profile-stats dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5em 1em;
+  margin: 0;
+}
+
+#profile-stats dt {
+  grid-row: 1;
+  font-weight: 600;
+  font-size: 85%;
+  color: light-dark(oklch(50% 0% 0), oklch(65% 0% 0));
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#profile-stats dd {
+  grid-row: 2;
+  margin: 0;
+  font-size: 150%;
+  font-weight: 700;
 }
 
 section {
