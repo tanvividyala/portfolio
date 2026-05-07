@@ -34,6 +34,7 @@ let pages = [
   { url: 'projects/', title: 'Projects' },
   { url: 'contact/', title: 'Contact' },
   { url: 'resume/', title: 'Resume' },
+  { url: 'meta/', title: 'Meta' },
   { url: 'https://github.com/tanvividyala', title: 'GitHub' },
 ];
 
@@ -109,13 +110,15 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
   for (const p of project) {
     const article = document.createElement('article');
     article.innerHTML = `
-      <span class="card-year">${p.year ?? ''}</span>
       <div class="card-img-wrap">
         <img src="${p.image}" alt="${p.title}">
       </div>
       <div class="card-body">
         <${headingLevel}>${p.title}</${headingLevel}>
-        <p>${p.description}</p>
+        <div>
+          <p>${p.description}</p>
+          <span class="project-year">${p.year ?? ''}</span>
+        </div>
       </div>
     `;
     containerElement.appendChild(article);
