@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap">
     <link rel="stylesheet" href="../style.css">
     <script src="../global.js" type="module"></script>
     <title>Contact Me</title>
@@ -11,13 +14,15 @@
 
     <h1>Contact Me</h1>
     <form action="mailto:tvidyala@ucsd.edu" method="get">
-        <label>Subject:
-            <input name="subject">
+        <label class="field">
+            <span class="field__label">Subject</span>
+            <input class="field__input" name="subject">
         </label>
-        <label>Message:
-            <textarea name="body" rows="5" cols="30"></textarea>
+        <label class="field">
+            <span class="field__label">Message</span>
+            <textarea class="field__input" name="body" rows="5"></textarea>
         </label>
-        <button>Send</button>
+        <button class="btn btn--primary">Send</button>
     </form>
 </body>
 </html>
