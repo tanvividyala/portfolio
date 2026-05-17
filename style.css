@@ -321,6 +321,10 @@ h1 {
   gap: 1.5em;
 }
 
+.projects a {
+  text-decoration: none;
+}
+
 .projects article {
   border-radius: var(--radius-lg);
   padding: 1.5em;
