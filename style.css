@@ -121,7 +121,7 @@
 
 /* ── Dark mode token overrides ────────────────────────────── */
 @media (prefers-color-scheme: dark) {
-  :root:not([style="color-scheme: light"]) {
+  :root:not([data-color-scheme="light"]) {
     --bg:           #1c2119;
     --bg-elevated:  var(--moss-900);
     --bg-sunken:    #131710;
@@ -144,7 +144,7 @@
   }
 }
 
-:root[style="color-scheme: dark"] {
+:root[data-color-scheme="dark"] {
   --bg:           #1c2119;
   --bg-elevated:  var(--moss-900);
   --bg-sunken:    #131710;

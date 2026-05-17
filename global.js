@@ -54,6 +54,7 @@ const select = document.querySelector('.color-scheme select');
 
 function setColorScheme(colorScheme) {
   document.documentElement.style.setProperty('color-scheme', colorScheme);
+  document.documentElement.setAttribute('data-color-scheme', colorScheme);
   select.value = colorScheme;
 }
 
@@ -121,7 +122,16 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
         </div>
       </div>
     `;
-    containerElement.appendChild(article);
+    if (p.url) {
+      const a = document.createElement('a');
+      a.href = p.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.appendChild(article);
+      containerElement.appendChild(a);
+    } else {
+      containerElement.appendChild(article);
+    }
   }
 }
 
