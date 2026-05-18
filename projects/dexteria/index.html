@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dexteria Optimization Report</title>
+  <meta name="description" content="Improving occupational therapy app engagement through analytics insights — Binary Labs App Optimization Case Study">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ──────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; }
+    a { background-color: transparent; }
+    a:active, a:hover { outline: 0; }
+    b, strong { font-weight: bold; }
+    img { border: 0; max-width: 100%; }
+    hr { box-sizing: content-box; height: 0; }
+    pre { overflow: auto; }
+    table { border-collapse: collapse; border-spacing: 0; }
+    td, th { padding: 0; }
+
+    /* ── Fonts ──────────────────────────────────────────────────────────────── */
+    @font-face {
+      font-family: "Cooper Md BT";
+      src: url("../../fonts/CooperMdBT-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ── Design tokens ──────────────────────────────────────────────────────── */
+    :root {
+      --poppy:       #d85455;
+      --sage:        #91ad94;
+      --cream:       #fbf6e9;
+      --apricot:     #f1a97a;
+      --moss:        #60704e;
+      --moss-900:    #2f3a26;
+      --cream-50:    #fefbf3;
+      --cream-100:   #fbf6e9;
+      --cream-200:   #f3ecd7;
+      --cream-300:   #e6dec3;
+      --moss-300:    #8a9776;
+      --moss-700:    #485636;
+      --poppy-200:   #f0b5b5;
+      --poppy-600:   #b8403f;
+      --apricot-200: #f9d4ba;
+      --apricot-600: #d98453;
+      --sage-200:    #c8d6c9;
+      --sage-600:    #6f8c73;
+      --bg:          var(--cream-100);
+      --bg-elevated: var(--cream-50);
+      --bg-sunken:   var(--cream-200);
+      --fg:          var(--moss-900);
+      --fg-muted:    var(--moss-700);
+      --fg-subtle:   var(--moss-300);
+      --accent:      var(--poppy);
+      --accent-hover:var(--poppy-600);
+      --success:     var(--sage-600);
+      --highlight:   var(--apricot);
+      --border:      var(--cream-300);
+      --font-display:"Cooper Md BT", "Cooper BT", Georgia, serif;
+      --font-sans:   "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      --font-mono:   "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    /* ── Base ───────────────────────────────────────────────────────────────── */
+    body {
+      background-color: var(--bg);
+      color: var(--fg-muted);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* ── Layout ─────────────────────────────────────────────────────────────── */
+    .main-content {
+      word-wrap: break-word;
+      padding-top: 3rem;
+    }
+    @media screen and (min-width: 64em) {
+      .main-content { max-width: 64rem; padding: 3rem 6rem 4rem; margin: 0 auto; font-size: 1.1rem; }
+    }
+    @media screen and (min-width: 42em) and (max-width: 64em) {
+      .main-content { padding: 3rem 4rem 4rem; font-size: 1.1rem; }
+    }
+    @media screen and (max-width: 42em) {
+      .main-content { padding: 2rem 1.25rem 3rem; font-size: 1rem; }
+    }
+
+    /* ── Headings ───────────────────────────────────────────────────────────── */
+    .main-content h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    .main-content h2,
+    .main-content h3 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      color: var(--fg);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    .main-content h4,
+    .main-content h5,
+    .main-content h6 {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      color: var(--fg);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* h2 accent underline */
+    .main-content h2 {
+      padding-bottom: 0.35em;
+      border-bottom: 2px solid var(--cream-300);
+      position: relative;
+    }
+    .main-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 2.5rem;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    /* ── Eyebrow + byline ───────────────────────────────────────────────────── */
+    .main-content h1:first-of-type::before {
+      content: "— App Optimization Case Study · Binary Labs";
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .main-content h1:first-of-type + p {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      color: var(--fg-subtle);
+      margin-top: 0.5rem;
+      margin-bottom: 2.5rem;
+      max-width: none;
+    }
+
+    /* ── Links ──────────────────────────────────────────────────────────────── */
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      text-underline-offset: 0.2em;
+      text-decoration-thickness: 1px;
+      transition: color 140ms ease;
+    }
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    /* ── Paragraphs & lists ─────────────────────────────────────────────────── */
+    .main-content p { margin-bottom: 1em; }
+    .main-content ul,
+    .main-content ol { margin-top: 0; padding-left: 1.5rem; }
+    .main-content li { margin-bottom: 0.3em; }
+
+    /* ── Dividers ───────────────────────────────────────────────────────────── */
+    hr {
+      height: 2px;
+      padding: 0;
+      margin: 2rem 0;
+      background-color: var(--border);
+      border: 0;
+    }
+
+    /* ── Code ───────────────────────────────────────────────────────────────── */
+    code {
+      font-family: var(--font-mono);
+      background-color: var(--bg-sunken);
+      color: var(--fg);
+      padding: 2px 4px;
+      font-size: 0.9rem;
+      border-radius: 4px;
+    }
+    pre {
+      font-family: var(--font-mono);
+      background-color: var(--bg-sunken);
+      color: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.8rem;
+      overflow: auto;
+      font-size: 0.9rem;
+    }
+    pre > code { background-color: transparent; padding: 0; }
+
+    /* ── Tables ─────────────────────────────────────────────────────────────── */
+    .main-content table {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-collapse: collapse;
+    }
+    .main-content table th,
+    .main-content table td {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+    }
+    .main-content table th {
+      font-weight: bold;
+      background-color: var(--bg-sunken);
+      color: var(--fg);
+    }
+    .main-content table tr:nth-child(even) td {
+      background-color: var(--bg-elevated);
+    }
+    .main-content table tr:hover td {
+      background-color: var(--apricot-200);
+      transition: background-color 140ms ease;
+    }
+
+    /* ── Blockquotes ────────────────────────────────────────────────────────── */
+    blockquote {
+      background: var(--bg-elevated);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 0.9rem 1.4rem;
+      margin-left: 0;
+      color: var(--fg-muted);
+    }
+    blockquote > :first-child { margin-top: 0; }
+    blockquote > :last-child { margin-bottom: 0; }
+
+    /* ── Images ─────────────────────────────────────────────────────────────── */
+    .main-content img {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px -4px rgba(47, 58, 38, 0.12);
+      display: block;
+      margin: 1rem auto;
+      max-width: 100%;
+    }
+
+    /* ── iframes ────────────────────────────────────────────────────────────── */
+    iframe {
+      display: block;
+      width: 100% !important;
+      max-width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    /* ── Mono small elements ────────────────────────────────────────────────── */
+    small, caption, figcaption { font-family: var(--font-mono); }
+
+    /* ── Selection ──────────────────────────────────────────────────────────── */
+    ::selection { background: var(--apricot-200); color: var(--moss-900); }
+
+    /* ── Team grid ──────────────────────────────────────────────────────────── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem 2rem;
+      margin: 1.75rem 0 3rem;
+      padding: 1.5rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .team-cell {}
+    .team-role {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin: 0 0 0.2rem;
+    }
+    .team-name {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      color: var(--fg);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    /* ── Callout / insight card ──────────────────────────────────────────────── */
+    .callout {
+      background: var(--bg-elevated);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 0.9rem 1.4rem;
+      margin: 1.5rem 0;
+    }
+    .callout p { margin: 0; }
+    .callout strong { color: var(--fg); }
+
+    /* ── External link chip ─────────────────────────────────────────────────── */
+    .link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--poppy-200);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      text-decoration: none;
+      transition: background-color 140ms ease, color 140ms ease;
+      margin-bottom: 1rem;
+      margin-right: 0.5rem;
+    }
+    .link-chip:hover {
+      background-color: var(--poppy-200);
+      color: var(--poppy-600);
+      text-decoration: none;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────────────────────── */
+    .site-footer {
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: solid 1px var(--border);
+      color: var(--fg-subtle);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+    @media screen and (min-width: 64em) {
+      .site-footer { max-width: 64rem; padding: 2rem 6rem; margin: 2rem auto 0; }
+    }
+    @media screen and (min-width: 42em) and (max-width: 64em) {
+      .site-footer { padding: 2rem 4rem; }
+    }
+    @media screen and (max-width: 42em) {
+      .site-footer { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <main id="content" class="main-content" role="main">
+
+    <h1>Dexteria 2 Optimization Report</h1>
+
+    <p>By Tanvi Vidyala, Jasmine Hong, Rakshan Patnaik, Christine Hoy, Vincent Tong, Kyla Phiri, and Riley Liu</p>
+
+    <h2>Executive Summary</h2>
+
+    <h3>Binary Labs</h3>
+    <p>Founded in 1993 by Frank Jensen, Binary Labs has been at the forefront of developing innovative iOS applications for occupational therapy, particularly for students with special needs. As an early adopter in the digital health sector, the company launched its first app, Dexteria, in 2011, just two years after the App Store's debut, and has recently expanded its offerings with a new application, Dexteria 2. Serving both the K–12 educational sector and private occupational therapists, Binary Labs' tools are utilized to enhance fine motor skills in children and assist in rehabilitation for individuals with conditions such as Parkinson's disease.</p>
+
+    <h3>Dexteria 2</h3>
+    <p>Dexteria 2 builds on the success of the original Dexteria app, combining fun, interactive exercises with real therapeutic value. Designed to support fine motor skills, hand-eye coordination, cognitive development, and spatial reasoning, the app offers two thoughtfully designed activities: <strong>Burger Builder</strong> and <strong>Vantage Point</strong>. Each exercise provides an engaging experience while helping users make meaningful progress in their rehabilitation or developmental journey.</p>
+
+    <h3>Project Description</h3>
+    <p>In this project, Binary Labs provided the team with user data from Dexteria 2. The data analysts analyzed this information to identify underutilized features and areas for potential improvement. Based on these insights, the team conducted market research to understand the needs of stroke survivors and rehabilitation professionals, generating a report outlining key issues within the app, supported by data-driven recommendations for feature enhancements.</p>
+
+    <p>The final deliverables include:</p>
+    <ol>
+      <li>A <strong>comprehensive research report</strong> detailing the app's pain points, feature usage trends, and recommendations for improvement, specifically tailored to better serve the stroke rehabilitation market.</li>
+      <li>A <strong>data visualization dashboard</strong> to present key findings in an accessible format.</li>
+      <li><strong>Mock-ups of suggested feature improvements</strong> created in Figma to provide a visual representation of proposed changes.</li>
+    </ol>
+    <p>Rather than developing new features, the project focuses on ideation and user research, delivering actionable insights to help Binary Labs refine their app and better target the stroke rehabilitation market.</p>
+
+    <h2>SWOT Analysis</h2>
+
+    <p>
+      <a class="link-chip" href="https://www.figma.com/board/84XESIrtKzLvMOHjBAAOd1/Binary-labs-project--marketing-research----SWOT-analysis?node-id=0-1&p=f" target="_blank" rel="noopener noreferrer">↗ View FigJam Board</a>
+    </p>
+
+    <h3>Strengths</h3>
+    <ul>
+      <li><strong>Accessible and User-Friendly:</strong> The app is easy to navigate for patients of all ages, including older adults and users with motor impairments.</li>
+      <li><strong>Therapeutically Grounded:</strong> Its activities are backed by occupational therapy research, providing evidence-based support for motor skill development.</li>
+      <li><strong>Positive Reinforcement:</strong> Engaging auditory and visual feedback keeps users motivated and encourages continued use.</li>
+      <li><strong>Neurorehabilitation-Aligned Design:</strong> Incorporates UX and feedback strategies aligned with neurorehab best practices.</li>
+      <li><strong>Simple Interface:</strong> Clear UI and quick recovery from errors (e.g., no penalties for mis-taps) create a low-friction experience.</li>
+      <li><strong>Quick Start:</strong> Games launch immediately after download with minimal setup.</li>
+    </ul>
+
+    <h3>Weaknesses</h3>
+    <ul>
+      <li><strong>Limited Onboarding:</strong> No tutorial or guidance for first-time users can lead to confusion, especially around the app's intended purpose.</li>
+      <li><strong>Generalized Focus:</strong> Lacks specificity for stroke rehabilitation, reducing perceived value for targeted therapy.</li>
+      <li><strong>Inconsistent Navigation:</strong> Missing "previous" buttons and unclear transitions (e.g., post-activity screen behavior) hinder user flow.</li>
+      <li><strong>Dated Visuals:</strong> UI feels less modern, making it harder to stand out against newer, more polished therapy apps.</li>
+    </ul>
+
+    <h3>Opportunities</h3>
+    <ul>
+      <li><strong>Improved Onboarding:</strong> Adding a tutorial or short quiz could help users understand what type of therapy or skills the app targets.</li>
+      <li><strong>Gamified Progression:</strong> Unlocking new locations, themes, or activities can drive sustained engagement.</li>
+      <li><strong>User Segmentation:</strong> Dividing games into cognitive vs. motor therapy categories helps align user goals with the app's functionality.</li>
+      <li><strong>Content Bundling:</strong> Packaging Dexteria 2 with other Binary Labs apps or exercises could encourage ecosystem adoption.</li>
+    </ul>
+
+    <h3>Threats</h3>
+    <ul>
+      <li><strong>Limited Content Scope:</strong> With only two games, users may lose interest over time.</li>
+      <li><strong>Stagnant Skill Progression:</strong> New "levels" don't necessarily reflect meaningful skill improvement.</li>
+      <li><strong>Platform Constraints:</strong> iOS-only availability (iPhone and iPad) limits reach.</li>
+      <li><strong>Feature Fragmentation:</strong> Launching separate mini-apps instead of improving Dexteria 2 could frustrate users and waste device storage.</li>
+    </ul>
+
+    <h2>Competitive Analysis</h2>
+
+    <p>
+      <a class="link-chip" href="https://www.figma.com/board/84XESIrtKzLvMOHjBAAOd1/Binary-labs-project--marketing-research----SWOT-analysis?node-id=0-1&p=f" target="_blank" rel="noopener noreferrer">↗ View FigJam Board</a>
+    </p>
+
+    <h3>Flint Rehab MusicGlove</h3>
+    <ul>
+      <li><strong>Strengths:</strong> Clinically validated and widely adopted in hospitals, MusicGlove is highly engaging and proven to improve hand function within six hours of use. Its customizability for hand size and side (left/right) adds flexibility for diverse users.</li>
+      <li><strong>Weaknesses:</strong> The high price point ($399, tablet not included) and lack of iPad compatibility limit accessibility. Additionally, it's not usable for patients with no hand mobility.</li>
+      <li><strong>Opportunities:</strong> Introducing iPad/phone support and offering bundles with companion tools (e.g., FitMi) could boost market appeal. Rental programs may reduce upfront costs.</li>
+      <li><strong>Threats:</strong> Limited clarity for new users without external reviews, plus high costs, can deter adoption when other lower-cost or more intuitive options exist.</li>
+    </ul>
+
+    <h3>Tactus Therapy</h3>
+    <ul>
+      <li><strong>Strengths:</strong> Offers a large library of evidence-based apps with an "app finder" to personalize therapy types (e.g., speech, reading, comprehension). It's professionally developed and spans multiple therapy areas.</li>
+      <li><strong>Weaknesses:</strong> Branding challenges due to many app names and limited desktop usability may create confusion for users.</li>
+      <li><strong>Opportunities:</strong> Segmenting experiences for therapists vs. patients and expanding evidence-based guides further boost usability and trust.</li>
+      <li><strong>Threats:</strong> Website information overload and a relatively high price point may be barriers for first-time users seeking simpler solutions.</li>
+    </ul>
+
+    <h3>RehabCoach</h3>
+    <ul>
+      <li><strong>Strengths:</strong> Offers exercises across six skill areas (e.g., memory, perception, language) and is available on both iOS and Android, reaching a broad audience. Simple interface appeals to general learners.</li>
+      <li><strong>Weaknesses:</strong> Lacks a standalone website and centralized platform, which hurts credibility and discoverability. Branding and visual design are also underwhelming.</li>
+      <li><strong>Opportunities:</strong> Developing a website with customer feedback features and customizable design options could improve trust and engagement.</li>
+      <li><strong>Threats:</strong> No advertising or marketing efforts limit reach, and a flat visual style may feel uninspiring compared to more dynamic competitors.</li>
+    </ul>
+
+    <h3>Dexteria 2 Positioning</h3>
+    <p>Compared to these competitors, Dexteria 2 excels in intuitive design and user-friendly feedback loops, but is limited by a lack of onboarding support and breadth of activities. It sits between MusicGlove's clinical robustness and RehabCoach's affordability, while lacking the content depth and personalization of Tactus Therapy. Future competitive edge could come from expanding therapy types (beyond fine motor skills), adding onboarding/tutorials, and packaging with other Binary Labs tools for a more holistic offering.</p>
+
+    <h2>User Research</h2>
+
+    <p>To better understand the needs and experiences of Dexteria 2 users, we gathered feedback from educators, occupational therapists, and caregivers who regularly use Binary Labs apps with their clients and students. Participants shared their preferences, pain points, and suggestions across the broader suite of tools, including Dexteria Jr., Dexteria Dots, Dexteria POV, and the Essential Apps for OT Bundle.</p>
+
+    <h3>Favorite Features</h3>
+    <ul>
+      <li><strong>Interactive &amp; Motivating Activities:</strong> Users especially appreciated games that engage fine motor skills, such as tracing letters and numbers, the pinching game, and Catching Crabs.</li>
+      <li><strong>Developmentally Appropriate Tasks:</strong> Therapists liked how activities like Squish the Squash helped younger children understand cause and effect, while Tap-It supported finger isolation and dexterity in older students.</li>
+      <li><strong>Data Collection:</strong> Built-in progress tracking was seen as a valuable feature, especially when working with children in clinical or school-based settings.</li>
+    </ul>
+
+    <h3>Least Favorite Features</h3>
+    <ul>
+      <li><strong>Math Activities:</strong> These were generally seen as less engaging or not well-suited to the user base.</li>
+      <li><strong>App Navigation Issues:</strong> Children with attention challenges often skipped or avoided assigned tasks due to the lack of restrictions within the app.</li>
+      <li><strong>Technical Glitches:</strong> Occasional bugs interrupted learning flow and frustrated both users and therapists.</li>
+    </ul>
+
+    <h3>Desired Features</h3>
+    <ul>
+      <li><strong>Custom Locking Mechanisms:</strong> A way for adults to lock a user into a specific skill area to reduce task avoidance.</li>
+      <li><strong>Multi-User Data Tracking:</strong> A system to track performance across multiple users and sessions, ideal for shared devices in schools or clinics.</li>
+      <li><strong>Expanded Content:</strong> Requests included coloring activities for younger users and advanced math concepts tailored for adults on the autism spectrum.</li>
+    </ul>
+
+    <h3>How Users Discovered Binary Labs</h3>
+    <ol>
+      <li>Online Search</li>
+      <li>Recommendations from Occupational Therapists</li>
+      <li>Mentions on Professional Therapy Websites</li>
+    </ol>
+
+    <h2>Data Analysis</h2>
+
+    <p>We collected usage data for Dexteria and Dexteria 2 from Google Analytics between <strong>November 2024 and March 2025</strong>. To analyze this data, we conducted an initial data exploration using Google Colab and Python libraries, such as Pandas. After this, we created an easy-to-navigate Tableau Dashboard summarizing our insights.</p>
+
+    <p>
+      <a class="link-chip" href="https://public.tableau.com/views/DexteriaDashboard_17479564954310/DexteriaDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" rel="noopener noreferrer">↗ Tableau Dashboard</a>
+      <a class="link-chip" href="https://colab.research.google.com/drive/1G9Sd2USkQUEzSkjH_oQJm6p6oPovO0Fs?usp=sharing" target="_blank" rel="noopener noreferrer">↗ Analysis Notebook</a>
+    </p>
+
+    <h3>Insights</h3>
+
+    <div class="callout">
+      <p><strong>Minigame Engagement Gap:</strong> Vantage Point is vastly underutilized compared to Burger Builder. Burger Builder has approximately <strong>six times more active users</strong>, likely because its food theme is more appealing and engaging to users.</p>
+    </div>
+
+    <div class="callout">
+      <p><strong>Discovery Channels:</strong> Dexteria 2 is learned primarily through purchase by an Institution/School (<strong>63.2%</strong>) and searching "Dexteria 2" on the App Store (<strong>27.4%</strong>).</p>
+    </div>
+
+    <div class="callout">
+      <p><strong>Device Preference:</strong> The app is primarily used on tablets, particularly iPads. This is likely due to the larger screen size, which makes it easier for users to navigate and play games more comfortably.</p>
+    </div>
+
+    <div class="callout">
+      <p><strong>Seasonal Trends:</strong> No definitive seasonal trends were identified, but engagement spikes were observed in <strong>November, December, and January</strong> — likely driven by the holiday season and school breaks, when students have more free time and higher screen usage.</p>
+    </div>
+
+    <h2>Recommendations</h2>
+
+    <h3>Burger Builder</h3>
+
+    <h4>UI / Visual Design Improvements</h4>
+    <ul>
+      <li><strong>Modernize the overall design</strong> for a more current, polished look.</li>
+      <li><strong>Reduce visual strain</strong> by using a softer, lower-contrast color palette and adjusting shadows and lighting to be less harsh and more balanced.</li>
+      <li><strong>Redesign or remove the lamp graphics</strong> to match the rest of the visuals in a consistent 3D style.</li>
+      <li><strong>Improve UI layout and organization</strong> to enhance clarity and accessibility.</li>
+      <li><strong>Move the ingredients bar to the bottom</strong> of the screen for a more intuitive interaction flow.</li>
+      <li><strong>Update button and icon colors</strong> for better clarity — change the "Check" action to green and the "Clear" action to red.</li>
+    </ul>
+
+    <h4>Gameplay &amp; UX</h4>
+    <ul>
+      <li>Add a <strong>difficulty selection screen</strong> before gameplay begins, featuring progress indicators such as stars to indicate amount completed per level.</li>
+      <li>Replace fixed level counts with <strong>timed rounds</strong> to create a faster pace and encourage replayability.</li>
+      <li>Display <strong>clear game directions</strong> before the start to help users understand the objective and how each level works.</li>
+      <li>After each round, show a <strong>performance summary</strong> with average time per burger, accuracy rate, and a comparison to the user's high score.</li>
+    </ul>
+
+    <h4>Redesigned Mockups</h4>
+    <p>
+      <a class="link-chip" href="https://www.figma.com/board/84XESIrtKzLvMOHjBAAOd1/Binary-labs-project--marketing-research----SWOT-analysis?node-id=0-1&p=f" target="_blank" rel="noopener noreferrer">↗ View Figma Mockups</a>
+    </p>
+    <p>The redesigned mockups include updated UI layouts for the difficulty selection screen, in-game interface, and the post-round performance summary, all reflecting the visual and UX improvements outlined above.</p>
+
+    <h2>Conclusion</h2>
+
+    <p>Our analysis of Dexteria 2 highlights both its strong foundation in therapeutic design and key areas for improvement, particularly as Binary Labs looks to expand its impact in the stroke rehabilitation market. While the app is praised for its ease of use, engaging visuals, and evidence-based approach, our user research and data analysis identified important gaps in onboarding, customization, and user retention.</p>
+
+    <p>The Burger Builder minigame significantly outperforms Vantage Point in engagement, suggesting that theming, clarity of gameplay, and visual appeal are critical levers for success. Meanwhile, the lack of guidance for new users and limited content scope present barriers to long-term usage, especially among adult stroke survivors who may require more targeted and adaptive support.</p>
+
+    <p>Our research-based recommendations — from redesigned UI elements to better performance feedback and skill-locking mechanisms — are aimed at making Dexteria 2 more intuitive, scalable, and therapeutically aligned. By integrating these enhancements and continuing to leverage user feedback, Binary Labs can position Dexteria 2 as a more competitive and comprehensive solution for both pediatric and adult rehabilitation contexts.</p>
+
+    <p>This report serves as a roadmap to help Binary Labs translate these insights into meaningful product updates, supporting their mission of delivering accessible, effective digital therapy tools for diverse populations.</p>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>Dexteria 2 Optimization Report · Binary Labs · 2025</span>
+    &nbsp;·&nbsp;
+    <a href="../../">← Back to Portfolio</a>
+  </footer>
+
+</body>
+</html>
