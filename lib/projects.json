@@ -3,14 +3,16 @@
     "title": "SolarIQ",
     "year": "2026",
     "image": "../images/solariq.png",
-    "description": "Business intelligence dashboard for ZenPower."
+    "description": "Business intelligence dashboard for ZenPower.",
+    "url": "https://github.com/ShamitaGoyal/solar-iq"
     },
 
     {
     "title": "Convolyzer",
     "year": "2026",
     "image": "https://cdn.creazilla.com/cliparts/7928265/speech-balloon-clipart-original.png",
-    "description": "Message history and visualization tool hosted on Streamlit."
+    "description": "Message history and visualization tool hosted on Streamlit.",
+    "url": "https://convolyzer.streamlit.app/"
     },
 
     {
@@ -18,7 +20,7 @@
     "year": "2025",
     "image": "https://cdn-icons-png.flaticon.com/512/3063/3063198.png",
     "description": "Improving occupational therapy app engagement through analytics insights.",
-    "url": "dexteria/"
+    "url": "projects/dexteria/"
     },
 
     {
@@ -34,7 +36,7 @@
     "year": "2025",
     "image": "https://png.pngtree.com/png-vector/20221024/ourmid/pngtree-global-travel-site-language-vector-png-image_34387518.png",
     "description": "Do LLMs assign significantly lower surprisal to low-context speech acts compared to high-context equivalents?",
-    "url": "https://tanvividyala.github.io/high-context-vs-low-context-sensitivity-in-llms/"
+    "url": "https://tanvividyala.github.io/context-sensitivity-llms/"
 },
 
     {

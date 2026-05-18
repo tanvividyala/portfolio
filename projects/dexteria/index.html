@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dexteria Optimization Report</title>
-  <meta name="description" content="Improving occupational therapy app engagement through analytics insights — Binary Labs App Optimization Case Study">
+  <meta name="description" content="Improving occupational therapy app engagement through analytics insights, Binary Labs App Optimization Case Study">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
@@ -309,6 +309,42 @@
     .callout p { margin: 0; }
     .callout strong { color: var(--fg); }
 
+    /* ── Stat / KPI cards ───────────────────────────────────────────────────── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 1.75rem 0 2rem;
+    }
+    .stat-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.25rem 1rem;
+    }
+    .stat-card .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1;
+      margin: 0 0 0.35rem;
+    }
+    .stat-card .stat-label {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--fg);
+      margin: 0 0 0.2rem;
+    }
+    .stat-card .stat-sub {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--fg-subtle);
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+
     /* ── External link chip ─────────────────────────────────────────────────── */
     .link-chip {
       display: inline-flex;
@@ -331,6 +367,32 @@
       background-color: var(--poppy-200);
       color: var(--poppy-600);
       text-decoration: none;
+    }
+
+
+    /* ── Mockup grid ────────────────────────────────────────────────────────── */
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin: 1.25rem 0 1.5rem;
+    }
+    @media screen and (max-width: 42em) {
+      .mockup-grid { grid-template-columns: 1fr; }
+    }
+    .mockup-figure {
+      margin: 0;
+    }
+    .mockup-figure img {
+      margin: 0 0 0.5rem;
+      width: 100%;
+    }
+    .mockup-figure figcaption {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--fg-subtle);
+      text-align: center;
     }
 
     /* ── Footer ─────────────────────────────────────────────────────────────── */
@@ -458,6 +520,29 @@
 
     <p>To better understand the needs and experiences of Dexteria 2 users, we gathered feedback from educators, occupational therapists, and caregivers who regularly use Binary Labs apps with their clients and students. Participants shared their preferences, pain points, and suggestions across the broader suite of tools, including Dexteria Jr., Dexteria Dots, Dexteria POV, and the Essential Apps for OT Bundle.</p>
 
+    <div class="stats-grid">
+      <div class="stat-card">
+        <p class="stat-value">70%</p>
+        <p class="stat-label">Occupational Therapists</p>
+        <p class="stat-sub">dominant user demographic</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value">90%</p>
+        <p class="stat-label">Use App &lt; 1 Hr / Session</p>
+        <p class="stat-sub">short, frequent sessions</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value">7.2<span style="font-size:1.1rem;color:var(--fg-subtle)">/10</span></p>
+        <p class="stat-label">Avg. Improvement Rating</p>
+        <p class="stat-sub">self-reported on 1–10 scale</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value">90%</p>
+        <p class="stat-label">5+ Years with Binary Labs</p>
+        <p class="stat-sub">highly loyal user base</p>
+      </div>
+    </div>
+
     <h3>Favorite Features</h3>
     <ul>
       <li><strong>Interactive &amp; Motivating Activities:</strong> Users especially appreciated games that engage fine motor skills, such as tracing letters and numbers, the pinching game, and Catching Crabs.</li>
@@ -491,9 +576,13 @@
     <p>We collected usage data for Dexteria and Dexteria 2 from Google Analytics between <strong>November 2024 and March 2025</strong>. To analyze this data, we conducted an initial data exploration using Google Colab and Python libraries, such as Pandas. After this, we created an easy-to-navigate Tableau Dashboard summarizing our insights.</p>
 
     <p>
-      <a class="link-chip" href="https://public.tableau.com/views/DexteriaDashboard_17479564954310/DexteriaDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" rel="noopener noreferrer">↗ Tableau Dashboard</a>
+      <a class="link-chip" href="https://public.tableau.com/shared/55MH53RDK" target="_blank" rel="noopener noreferrer">↗ Tableau Dashboard</a>
       <a class="link-chip" href="https://colab.research.google.com/drive/1G9Sd2USkQUEzSkjH_oQJm6p6oPovO0Fs?usp=sharing" target="_blank" rel="noopener noreferrer">↗ Analysis Notebook</a>
     </p>
+
+    <a href="https://public.tableau.com/shared/55MH53RDK" target="_blank" rel="noopener noreferrer">
+      <img src="../../images/dexteria2/dashboard.png" alt="Dexteria Dashboard" style="margin: 1.5rem 0;">
+    </a>
 
     <h3>Insights</h3>
 
@@ -510,7 +599,7 @@
     </div>
 
     <div class="callout">
-      <p><strong>Seasonal Trends:</strong> No definitive seasonal trends were identified, but engagement spikes were observed in <strong>November, December, and January</strong> — likely driven by the holiday season and school breaks, when students have more free time and higher screen usage.</p>
+      <p><strong>Seasonal Trends:</strong> No definitive seasonal trends were identified, but engagement spikes were observed in <strong>November, December, and January</strong>, likely driven by the holiday season and school breaks, when students have more free time and higher screen usage.</p>
     </div>
 
     <h2>Recommendations</h2>
@@ -524,7 +613,7 @@
       <li><strong>Redesign or remove the lamp graphics</strong> to match the rest of the visuals in a consistent 3D style.</li>
       <li><strong>Improve UI layout and organization</strong> to enhance clarity and accessibility.</li>
       <li><strong>Move the ingredients bar to the bottom</strong> of the screen for a more intuitive interaction flow.</li>
-      <li><strong>Update button and icon colors</strong> for better clarity — change the "Check" action to green and the "Clear" action to red.</li>
+      <li><strong>Update button and icon colors</strong> for better clarity: change the "Check" action to green and the "Clear" action to red.</li>
     </ul>
 
     <h4>Gameplay &amp; UX</h4>
@@ -536,10 +625,24 @@
     </ul>
 
     <h4>Redesigned Mockups</h4>
-    <p>
-      <a class="link-chip" href="https://www.figma.com/board/84XESIrtKzLvMOHjBAAOd1/Binary-labs-project--marketing-research----SWOT-analysis?node-id=0-1&p=f" target="_blank" rel="noopener noreferrer">↗ View Figma Mockups</a>
-    </p>
-    <p>The redesigned mockups include updated UI layouts for the difficulty selection screen, in-game interface, and the post-round performance summary, all reflecting the visual and UX improvements outlined above.</p>
+    <div class="mockup-grid">
+      <figure class="mockup-figure">
+        <img src="../../images/dexteria2/mockups/mockup2.png" alt="Difficulty selection screen: Easy, Medium, Hard">
+        <figcaption>Difficulty selection screen</figcaption>
+      </figure>
+      <figure class="mockup-figure">
+        <img src="../../images/dexteria2/mockups/mockup1.png" alt="Instructions screen">
+        <figcaption>Pre-game instructions</figcaption>
+      </figure>
+      <figure class="mockup-figure">
+        <img src="../../images/dexteria2/mockups/mockup3.png" alt="Redesigned gameplay UI">
+        <figcaption>Gameplay UI</figcaption>
+      </figure>
+      <figure class="mockup-figure">
+        <img src="../../images/dexteria2/mockups/mockup4.png" alt="Post-round score and accuracy summary">
+        <figcaption>Post-round performance summary</figcaption>
+      </figure>
+    </div>
 
     <h2>Conclusion</h2>
 
@@ -547,7 +650,7 @@
 
     <p>The Burger Builder minigame significantly outperforms Vantage Point in engagement, suggesting that theming, clarity of gameplay, and visual appeal are critical levers for success. Meanwhile, the lack of guidance for new users and limited content scope present barriers to long-term usage, especially among adult stroke survivors who may require more targeted and adaptive support.</p>
 
-    <p>Our research-based recommendations — from redesigned UI elements to better performance feedback and skill-locking mechanisms — are aimed at making Dexteria 2 more intuitive, scalable, and therapeutically aligned. By integrating these enhancements and continuing to leverage user feedback, Binary Labs can position Dexteria 2 as a more competitive and comprehensive solution for both pediatric and adult rehabilitation contexts.</p>
+    <p>Our research-based recommendations, from redesigned UI elements to better performance feedback and skill-locking mechanisms, are aimed at making Dexteria 2 more intuitive, scalable, and therapeutically aligned. By integrating these enhancements and continuing to leverage user feedback, Binary Labs can position Dexteria 2 as a more competitive and comprehensive solution for both pediatric and adult rehabilitation contexts.</p>
 
     <p>This report serves as a roadmap to help Binary Labs translate these insights into meaningful product updates, supporting their mission of delivering accessible, effective digital therapy tools for diverse populations.</p>
 
