@@ -36,6 +36,7 @@ let pages = [
   { url: 'resume/', title: 'Resume' },
   { url: 'meta/', title: 'Meta' },
   { url: 'https://github.com/tanvividyala', title: 'GitHub' },
+  { url: 'https://tanvividyala.github.io/bikewatching/', title: 'Bikewatching' },
 ];
 
 document.body.insertAdjacentHTML(
