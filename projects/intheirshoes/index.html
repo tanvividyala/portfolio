@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>In Their Shoes — Tanvi Vidyala</title>
+  <meta name="description" content="A choose-your-own neurodiverse adventure. Designing an accessible storybook in partnership with the Stanford Neurodiversity Project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>📺</text></svg>">
+  <style>
+    /* ── Reset ──────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; }
+    a { background-color: transparent; }
+    a:active, a:hover { outline: 0; }
+    img { border: 0; max-width: 100%; }
+    hr { box-sizing: content-box; height: 0; }
+    table { border-collapse: collapse; border-spacing: 0; }
+    td, th { padding: 0; }
+
+    /* ── Fonts ──────────────────────────────────────────────────────────────── */
+    @font-face {
+      font-family: "Cooper Md BT";
+      src: url("../../fonts/CooperMdBT-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ── Design tokens ──────────────────────────────────────────────────────── */
+    :root {
+      --poppy:       #d85455;
+      --sage:        #91ad94;
+      --cream:       #fbf6e9;
+      --apricot:     #f1a97a;
+      --moss:        #60704e;
+      --moss-900:    #2f3a26;
+      --cream-50:    #fefbf3;
+      --cream-100:   #fbf6e9;
+      --cream-200:   #f3ecd7;
+      --cream-300:   #e6dec3;
+      --moss-300:    #8a9776;
+      --moss-700:    #485636;
+      --poppy-200:   #f0b5b5;
+      --poppy-600:   #b8403f;
+      --apricot-200: #f9d4ba;
+      --apricot-600: #d98453;
+      --sage-200:    #c8d6c9;
+      --sage-600:    #6f8c73;
+      --bg:          var(--cream-100);
+      --bg-elevated: var(--cream-50);
+      --bg-sunken:   var(--cream-200);
+      --fg:          var(--moss-900);
+      --fg-muted:    var(--moss-700);
+      --fg-subtle:   var(--moss-300);
+      --accent:      var(--poppy);
+      --accent-hover:var(--poppy-600);
+      --success:     var(--sage-600);
+      --highlight:   var(--apricot);
+      --border:      var(--cream-300);
+      --font-display:"Cooper Md BT", "Cooper BT", Georgia, serif;
+      --font-sans:   "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      --font-mono:   "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    /* ── Base ───────────────────────────────────────────────────────────────── */
+    body {
+      background-color: var(--bg);
+      color: var(--fg-muted);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* ── Layout ─────────────────────────────────────────────────────────────── */
+    .main-content { word-wrap: break-word; padding-top: 3rem; }
+    @media screen and (min-width: 64em) {
+      .main-content { max-width: 64rem; padding: 3rem 6rem 4rem; margin: 0 auto; font-size: 1.1rem; }
+    }
+    @media screen and (min-width: 42em) and (max-width: 64em) {
+      .main-content { padding: 3rem 4rem 4rem; font-size: 1.1rem; }
+    }
+    @media screen and (max-width: 42em) {
+      .main-content { padding: 2rem 1.25rem 3rem; font-size: 1rem; }
+    }
+
+    /* ── Headings ───────────────────────────────────────────────────────────── */
+    .main-content h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    .main-content h2,
+    .main-content h3 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      color: var(--fg);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .main-content h4, .main-content h5, .main-content h6 {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      color: var(--fg);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .main-content h2 {
+      padding-bottom: 0.35em;
+      border-bottom: 2px solid var(--cream-300);
+      position: relative;
+    }
+    .main-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 2.5rem; height: 2px;
+      background: var(--accent);
+    }
+
+    /* ── Eyebrow + byline ───────────────────────────────────────────────────── */
+    .main-content h1:first-of-type::before {
+      content: "— Design · Storytelling · Stanford Neurodiversity Project";
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .main-content h1:first-of-type + p {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      color: var(--fg-subtle);
+      margin-top: 0.5rem;
+      margin-bottom: 2.5rem;
+      max-width: none;
+    }
+
+    /* ── Links ──────────────────────────────────────────────────────────────── */
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      text-underline-offset: 0.2em;
+      text-decoration-thickness: 1px;
+      transition: color 140ms ease;
+    }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    /* ── Paragraphs & lists ─────────────────────────────────────────────────── */
+    .main-content p { margin-bottom: 1em; }
+    .main-content ul, .main-content ol { margin-top: 0; padding-left: 1.5rem; }
+    .main-content li { margin-bottom: 0.3em; }
+
+    /* ── Dividers ───────────────────────────────────────────────────────────── */
+    hr { height: 2px; padding: 0; margin: 2rem 0; background-color: var(--border); border: 0; }
+
+    /* ── Overview grid ──────────────────────────────────────────────────────── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+      gap: 1rem;
+      margin: 2rem 0 2.5rem;
+    }
+    .overview-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+    }
+    .overview-card__label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-bottom: 0.4rem;
+    }
+    .overview-card__value {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--fg);
+      line-height: 1.3;
+    }
+    .overview-card__value a { color: var(--accent); font-weight: 600; }
+
+    /* ── Cover image ────────────────────────────────────────────────────────── */
+    .cover-image {
+      width: 100%;
+      border-radius: 14px;
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+    }
+
+    /* ── Stat cards ─────────────────────────────────────────────────────────── */
+    .stat-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .stat-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem 1.5rem;
+      border-top: 3px solid var(--accent);
+    }
+    .stat-card__number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--fg);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-card__label {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      line-height: 1.4;
+    }
+
+    /* ── Prototyping table ──────────────────────────────────────────────────── */
+    .proto-table {
+      width: 100%;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 0.95rem;
+    }
+    .proto-table th {
+      background: var(--bg-sunken);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      text-align: left;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .proto-table td {
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--fg-muted);
+    }
+    .proto-table tr:last-child td { border-bottom: none; }
+    .proto-table td:first-child {
+      font-weight: 600;
+      color: var(--fg);
+      white-space: nowrap;
+      width: 11rem;
+    }
+
+    /* ── Callout ────────────────────────────────────────────────────────────── */
+    .callout {
+      background: var(--bg-sunken);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 1rem 1.4rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--fg);
+    }
+
+    /* ── District list ──────────────────────────────────────────────────────── */
+    .district-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+    .district-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .district-list li:last-child { border-bottom: none; }
+    .district-list li::before {
+      content: "→";
+      font-family: var(--font-mono);
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.1em;
+    }
+
+    /* ── Book button ────────────────────────────────────────────────────────── */
+    .book-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      padding: 0.55em 1.1em;
+      text-decoration: none;
+      transition: background 140ms ease, color 140ms ease;
+      margin: 0.5rem 0 2rem;
+    }
+    .book-btn:hover {
+      background: var(--accent);
+      color: var(--cream-50);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <h1>In Their Shoes</h1>
+    <p>By Tanvi Vidyala, Gavin Griffin, Kevin Rha, Rui (Rose) Kong, Cate Marshburn, Taj Jawanda, and Rayna Vora</p>
+
+    <a class="book-btn" href="https://www.amazon.com/Their-Shoes-Choose-Your-Own-Neurodiverse-Adventure/dp/B0BCYWG71T" target="_blank" rel="noopener noreferrer">↗ Read the Book</a>
+
+    <img class="cover-image" src="../../images/intheirshoes/cover-evolution.png" alt="Evolution of the In Their Shoes book cover from pencil sketch to final illustrated design">
+
+    <h2>Background</h2>
+    <p>High school students often lack engaging and accurate resources about neurodiverse conditions. Existing materials are either overly clinical or stereotype-driven, leaving neurodiverse teens underrepresented and neurotypical peers uninformed.</p>
+
+    <div class="callout">
+      How might we create an inclusive learning experience that builds empathy for neurodiverse students and inspires advocacy among their peers?
+    </div>
+
+    <h2>Research</h2>
+    <p>Through user interviews and guest speakers at SNP-REACH, we recorded personal stories from neurodiverse individuals who are proud of their identities and willing to share educational gaps they recognized. Key takeaways:</p>
+    <ul>
+      <li>Representation must be authentic, not tokenistic.</li>
+      <li>Interactivity would better engage teens with diverse attention spans.</li>
+      <li>Accessibility features are critical for inclusive product design.</li>
+    </ul>
+
+    <h2>Ideation</h2>
+    <p>After brainstorming several interactive storytelling formats, we settled on creating an adventure game where the user could play as a neurodivergent student navigating their life. To better align with our two-week timeline, we pivoted to a more analog format with the same underlying principle: a choose-your-own-adventure style book.</p>
+    <p>We thought this could be a fun way to maximize engagement for both neurodiverse and neurotypical readers. To make the book as universal as possible, we chose a gender-neutral, cartoony protagonist to let all readers step into "their shoes" without bias.</p>
+
+    <h2>Prototyping &amp; Design</h2>
+
+    <table class="proto-table">
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Key Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Plot Tree</td>
+          <td>Completed by Day 3 to map all narrative branches and decision points.</td>
+        </tr>
+        <tr>
+          <td>Writing Iterations</td>
+          <td>Reduced diagnoses from four to two (Autism + ADHD) for clarity and depth; added info-cards for learning moments.</td>
+        </tr>
+        <tr>
+          <td>Illustrations</td>
+          <td>Iterated from animal concepts to blob sketches to the final cartoony aesthetic shown on the cover.</td>
+        </tr>
+        <tr>
+          <td>Accessibility</td>
+          <td>Applied dyslexic-friendly fonts, clear footnotes, and concise copy throughout.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Testing &amp; Feedback</h2>
+    <p>On Day 8 of the camp, we distributed a Google Form survey to camp peers and a neurodiversity interest group to gather feedback on our draft.</p>
+    <p>Readers valued the interactive format and authentic voice, but suggested simplifying branching and clarifying definitions of neurodiverse vocabulary. We implemented this feedback before final formatting.</p>
+    <p><strong>Outcome:</strong> Improved narrative flow and added footnotes defining terms to enhance educational value.</p>
+
+    <h2>Final Product</h2>
+    <p>Our final product was a polished interactive book independently published on Amazon, featuring inclusive visuals and branching narratives that immerse readers in neurodiverse experiences. To ensure accessibility, the team incorporated a dyslexia-friendly font, explanatory footnotes, and inclusive character designs.</p>
+    <p>A read-aloud audiobook was also created and posted on YouTube to further enhance accessibility and engagement.</p>
+
+    <h2>Impact</h2>
+
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-card__number">300+</div>
+        <div class="stat-card__label">copies sold on Amazon</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number">3</div>
+        <div class="stat-card__label">school districts across the nation</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number">37</div>
+        <div class="stat-card__label">Houston ISD high school campuses</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number">2022</div>
+        <div class="stat-card__label">Stanford Neurodiversity Conference</div>
+      </div>
+    </div>
+
+    <ul class="district-list">
+      <li><strong>Napa City School District</strong> (California) — requested copies for middle schools.</li>
+      <li><strong>Montgomery County Public Schools</strong> (Maryland) — requested copies for middle schools.</li>
+      <li><strong>Houston ISD</strong> (Texas, the nation's tenth largest district) — invited us to supply 37 high school campuses.</li>
+    </ul>
+
+    <p>We also presented at the <strong>2022 Stanford Neurodiversity Conference</strong>, a national event for educators and advocates, expanding visibility and demonstrating potential to influence neurodiversity education nationwide.</p>
+
+    <h2>Key Takeaways</h2>
+    <p>Authentic representation requires co-creation with the communities being represented. Our team found that interactive storytelling can transform abstract awareness into genuine empathy and advocacy. This experience demonstrated how applying design thinking under a tight timeline can produce an impactful, user-centered educational tool.</p>
+
+    <hr>
+    <p><a href="https://www.amazon.com/Their-Shoes-Choose-Your-Own-Neurodiverse-Adventure/dp/B0BCYWG71T" target="_blank" rel="noopener noreferrer">Read on Amazon →</a></p>
+  </div>
+</body>
+</html>

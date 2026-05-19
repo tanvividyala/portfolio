@@ -39,16 +39,10 @@ let pages = [
   { url: 'https://tanvividyala.github.io/bikewatching/', title: 'Bikewatching' },
 ];
 
-document.body.insertAdjacentHTML(
-  'afterbegin',
-  `<button class="color-scheme-toggle" aria-label="Toggle light/dark mode">
-    <span class="toggle-icon">☀</span>
-    <span class="toggle-track"><span class="toggle-thumb"></span></span>
-    <span class="toggle-icon">☾</span>
-  </button>`,
-);
-
-const themeToggle = document.querySelector('.color-scheme-toggle');
+const themeToggle = document.createElement('button');
+themeToggle.className = 'color-scheme-toggle';
+themeToggle.setAttribute('aria-label', 'Toggle light/dark mode');
+themeToggle.innerHTML = `<span class="toggle-icon">☀</span><span class="toggle-track"><span class="toggle-thumb"></span></span><span class="toggle-icon">☾</span>`;
 
 function setColorScheme(scheme) {
   document.documentElement.style.setProperty('color-scheme', scheme);
@@ -78,6 +72,19 @@ nav.appendChild(logo);
 const navLinks = document.createElement('div');
 navLinks.className = 'nav-links';
 nav.appendChild(navLinks);
+
+nav.appendChild(themeToggle);
+
+const hamburger = document.createElement('button');
+hamburger.className = 'nav-hamburger';
+hamburger.setAttribute('aria-label', 'Toggle navigation');
+hamburger.innerHTML = '<span></span><span></span><span></span>';
+nav.appendChild(hamburger);
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
 
 // Step 5: Better contact form
 const form = document.querySelector('form');
