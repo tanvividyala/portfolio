@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hype vs. Hyperpigmentation — Tanvi Vidyala</title>
+  <meta name="description" content="Comparing cultural trends in skincare marketing through EDA, hypothesis testing, and machine learning.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>📺</text></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; }
+    a { background-color: transparent; }
+    a:active, a:hover { outline: 0; }
+    img { border: 0; max-width: 100%; }
+    hr { box-sizing: content-box; height: 0; }
+    table { border-collapse: collapse; border-spacing: 0; }
+    td, th { padding: 0; }
+
+    @font-face {
+      font-family: "Cooper Md BT";
+      src: url("../../fonts/CooperMdBT-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --poppy:       #d85455;
+      --sage:        #91ad94;
+      --cream:       #fbf6e9;
+      --apricot:     #f1a97a;
+      --moss:        #60704e;
+      --moss-900:    #2f3a26;
+      --cream-50:    #fefbf3;
+      --cream-100:   #fbf6e9;
+      --cream-200:   #f3ecd7;
+      --cream-300:   #e6dec3;
+      --moss-300:    #8a9776;
+      --moss-700:    #485636;
+      --poppy-200:   #f0b5b5;
+      --poppy-600:   #b8403f;
+      --apricot-200: #f9d4ba;
+      --apricot-600: #d98453;
+      --sage-200:    #c8d6c9;
+      --sage-600:    #6f8c73;
+      --bg:          var(--cream-100);
+      --bg-elevated: var(--cream-50);
+      --bg-sunken:   var(--cream-200);
+      --fg:          var(--moss-900);
+      --fg-muted:    var(--moss-700);
+      --fg-subtle:   var(--moss-300);
+      --accent:      var(--poppy);
+      --accent-hover:var(--poppy-600);
+      --success:     var(--sage-600);
+      --highlight:   var(--apricot);
+      --border:      var(--cream-300);
+      --font-display:"Cooper Md BT", "Cooper BT", Georgia, serif;
+      --font-sans:   "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      --font-mono:   "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--fg-muted);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .main-content { word-wrap: break-word; padding-top: 3rem; }
+    @media screen and (min-width: 64em) {
+      .main-content { max-width: 64rem; padding: 3rem 6rem 4rem; margin: 0 auto; font-size: 1.1rem; }
+    }
+    @media screen and (min-width: 42em) and (max-width: 64em) {
+      .main-content { padding: 3rem 4rem 4rem; font-size: 1.1rem; }
+    }
+    @media screen and (max-width: 42em) {
+      .main-content { padding: 2rem 1.25rem 3rem; font-size: 1rem; }
+    }
+
+    .main-content h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    .main-content h2,
+    .main-content h3 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      color: var(--fg);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    .main-content h4 {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      color: var(--fg);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .main-content h2 {
+      padding-bottom: 0.35em;
+      border-bottom: 2px solid var(--cream-300);
+      position: relative;
+    }
+    .main-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 2.5rem;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .main-content h1:first-of-type::before {
+      content: "Data Science · Skincare Marketing Analysis";
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .main-content h1:first-of-type + p {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      color: var(--fg-subtle);
+      margin-top: 0.5rem;
+      margin-bottom: 2.5rem;
+      max-width: none;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      text-underline-offset: 0.2em;
+      text-decoration-thickness: 1px;
+      transition: color 140ms ease;
+    }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    .main-content p { margin-bottom: 1em; }
+    .main-content ul,
+    .main-content ol { margin-top: 0; padding-left: 1.5rem; }
+    .main-content li { margin-bottom: 0.3em; }
+
+    hr { height: 2px; padding: 0; margin: 2rem 0; background-color: var(--border); border: 0; }
+
+    .main-content img {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px -4px rgba(47, 58, 38, 0.12);
+      display: block;
+      margin: 1rem auto;
+      max-width: 100%;
+    }
+
+    iframe {
+      display: block;
+      width: 100% !important;
+      max-width: 100%;
+      height: 380px;
+      margin: 1.5rem 0;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    small, caption, figcaption { font-family: var(--font-mono); }
+    ::selection { background: var(--apricot-200); color: var(--moss-900); }
+
+    .callout {
+      background: var(--bg-elevated);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 0.9rem 1.4rem;
+      margin: 1.5rem 0;
+    }
+    .callout p { margin: 0; }
+    .callout strong { color: var(--fg); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 1.75rem 0 2rem;
+    }
+    .stat-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.25rem 1rem;
+    }
+    .stat-card .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1;
+      margin: 0 0 0.35rem;
+    }
+    .stat-card .stat-label {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--fg);
+      margin: 0 0 0.2rem;
+    }
+    .stat-card .stat-sub {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--fg-subtle);
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+
+    .link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--poppy-200);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      text-decoration: none;
+      transition: background-color 140ms ease, color 140ms ease;
+      margin-bottom: 1rem;
+      margin-right: 0.5rem;
+    }
+    .link-chip:hover {
+      background-color: var(--poppy-200);
+      color: var(--poppy-600);
+      text-decoration: none;
+    }
+
+    .wc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: 1.25rem 0 1.5rem;
+    }
+    @media screen and (max-width: 42em) {
+      .wc-grid { grid-template-columns: 1fr; }
+    }
+    .wc-figure { margin: 0; }
+    .wc-figure img { width: 100%; margin: 0 0 0.5rem; }
+    .wc-figure figcaption {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--fg-subtle);
+      text-align: center;
+    }
+
+    .site-footer {
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: solid 1px var(--border);
+      color: var(--fg-subtle);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+    @media screen and (min-width: 64em) {
+      .site-footer { max-width: 64rem; padding: 2rem 6rem; margin: 2rem auto 0; }
+    }
+    @media screen and (min-width: 42em) and (max-width: 64em) {
+      .site-footer { padding: 2rem 4rem; }
+    }
+    @media screen and (max-width: 42em) {
+      .site-footer { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <main id="content" class="main-content" role="main">
+
+    <h1>Hype vs. Hyperpigmentation</h1>
+
+    <p>By Vyomi Seth, Shamita Goyal, Tanvi Vidyala, and Sarah Sun</p>
+
+    <p>
+      <a class="link-chip" href="https://github.com/tanvividyala/hype-vs-hyperpigmentation" target="_blank" rel="noopener noreferrer">↗ GitHub Repo</a>
+    </p>
+
+    <h2>Overview</h2>
+
+    <p>This study examines differences in marketing strategies and consumer perceptions of hyperpigmentation treatments in Asian and Western skincare markets. Using exploratory data analysis, machine learning classification, and hypothesis testing, we analyzed ingredient emphasis, pricing structures, and linguistic framing in product descriptions from both regions across 421 products scraped from Sephora and YesStyle.</p>
+
+    <p>Our findings reveal that Asian skincare brands prioritize gentle, long-term skincare benefits, often highlighting ingredients like Niacinamide and Tranexamic Acid, whereas Western brands focus on clinical efficacy and faster results, emphasizing Vitamin C and Alpha Arbutin.</p>
+
+    <h2>Data</h2>
+
+    <p>We collected data by running the Easy Scraper Chrome extension on two storefronts:</p>
+
+    <ul>
+      <li><strong>Sephora</strong>: 219 products filtered by the "dark spots" concern, representing primarily Western brands from the US, France, UK, Canada, and Germany.</li>
+      <li><strong>YesStyle</strong>: 202 products tagged for hyperpigmentation, all from the South Korean skincare category.</li>
+    </ul>
+
+    <p>Each product included brand name, price (USD), product description, and ingredient list. We used the OpenAI API to label each Sephora product by country of origin and manually validated a 10% sample, finding all labels to be accurate.</p>
+
+    <h2>Ingredient Analysis</h2>
+
+    <p>We analyzed how often five key brightening ingredients (Vitamin C, Niacinamide, Alpha Arbutin, Kojic Acid, and Tranexamic Acid) appeared in product descriptions from each region.</p>
+
+    <iframe src="ingredient_mentions_density.html" height="500" frameborder="0"></iframe>
+
+    <div class="callout">
+      <p><strong>Niacinamide is the most frequently mentioned ingredient in Asian products</strong>, though it appears slightly more often in Western marketing too, suggesting it is popular in both regions. Vitamin C is the most mentioned ingredient in Western products, with a significantly higher proportion than in Asian skincare. Alpha Arbutin and Kojic Acid are nearly nonexistent in Korean product descriptions, pointing to distinct formulation philosophies rather than ingredient unavailability.</p>
+    </div>
+
+    <h2>Price Comparison</h2>
+
+    <p>We visualized the distribution of prices using KDE and box plots to identify whether one market tends to be more expensive than the other.</p>
+
+    <iframe src="kde_prices.html" height="500" frameborder="0"></iframe>
+    <iframe src="price_boxplot_region.html" height="450" frameborder="0"></iframe>
+
+    <div class="callout">
+      <p><strong>Western skincare products have a wider price distribution</strong>, including a significant number of higher-priced items, with outliers reaching $325 (Element Eight, Westman Atelier). Asian skincare products are more affordable, with prices clustering at lower values and fewer extreme outliers. The presence of high-priced Western outliers suggests that Western markets accommodate a wider price spectrum, with luxury brands significantly driving up price variation.</p>
+    </div>
+
+    <h2>Marketing Language</h2>
+
+    <p>We tokenized product descriptions, counted word occurrences, and visualized the results to understand how each market describes its products.</p>
+
+    <iframe src="western_top_marketing_words_10.html" height="500" frameborder="0"></iframe>
+    <iframe src="asian_top_marketing_words_10.html" height="500" frameborder="0"></iframe>
+
+    <div class="wc-grid">
+      <figure class="wc-figure">
+        <img src="western_wordcloud.png" alt="Western skincare word cloud">
+        <figcaption>Western: results-oriented language</figcaption>
+      </figure>
+      <figure class="wc-figure">
+        <img src="asian_wordcloud.png" alt="Asian skincare word cloud">
+        <figcaption>Asian: ingredient and skin-type focus</figcaption>
+      </figure>
+    </div>
+
+    <p>Western companies focus on results, using words like "dark," "visibly," "spots," and "clinical," and highlight anti-aging with words like "wrinkles" and "lines." Asian companies focus more on ingredients and skin type suitability, with words like "extract," "formula," "moisture," and "sensitive." Western company descriptions seem to focus on solving problems and showing visible changes; Asian descriptions highlight safe and nourishing formulas.</p>
+
+    <h2>Hypothesis Testing</h2>
+
+    <p>We performed a Chi-Square Test of Independence to determine whether the difference in word usage between Western and Asian skincare descriptions is statistically significant or just random variation.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <p class="stat-value">3475</p>
+        <p class="stat-label">Chi-Square Statistic</p>
+        <p class="stat-sub">word usage across markets</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value">p ≈ 0</p>
+        <p class="stat-label">P-Value</p>
+        <p class="stat-sub">statistically significant</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value">421</p>
+        <p class="stat-label">Products Analyzed</p>
+        <p class="stat-sub">219 Western · 202 Asian</p>
+      </div>
+    </div>
+
+    <p>Since the p-value is effectively zero, the difference in word usage between Western and Asian skincare descriptions is statistically significant, confirming that the two markets use distinct vocabulary patterns driven by cultural preferences, marketing strategies, and consumer expectations.</p>
+
+    <h2>Classification Model</h2>
+
+    <p>We converted product descriptions and ingredients into numerical features using TF-IDF, combined with normalized price, and trained a Random Forest classifier to predict whether a product is from an Asian or Western brand.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <p class="stat-value">95.3%</p>
+        <p class="stat-label">Model Accuracy</p>
+        <p class="stat-sub">random forest classifier</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value">1.00</p>
+        <p class="stat-label">Western Recall</p>
+        <p class="stat-sub">no Western products missed</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value">0.89</p>
+        <p class="stat-label">Asian Recall</p>
+        <p class="stat-sub">some Asian → Western errors</p>
+      </div>
+    </div>
+
+    <p>The model performs very well overall, with high precision and recall confirming that marketing language, ingredient choices, and pricing contribute meaningfully to regional differences in skincare branding. The lower recall for Asian products suggests that some Asian products were mistakenly classified as Western, which could be addressed by balancing the training data or adjusting classification thresholds.</p>
+
+    <h2>Conclusion</h2>
+
+    <p>Our analysis confirmed that Asian skincare brands focus more on gentle, long-term skincare benefits while Western brands highlight clinical efficacy and fast results. Western brands used terms like "clinical," "dark spots," and "visible results," while Asian brands used "moisture," "gentle," and "radiance," reflecting different consumer expectations shaped by cultural beauty standards.</p>
+
+    <p>Limitations include our datasets being primarily English-language and coming from a single storefront each, which may introduce bias from the platform's formatting rather than pure regional differences. Future work could expand to more localized brands, incorporate multilingual sentiment analysis, and include a wider variety of Asian and Western countries beyond the US and South Korea.</p>
+
+
+  </main>
+
+  <footer class="site-footer">
+    <span>Hype vs. Hyperpigmentation · 2025</span>
+    &nbsp;·&nbsp;
+    <a href="../../">← Back to Portfolio</a>
+  </footer>
+</body>
+</html>
