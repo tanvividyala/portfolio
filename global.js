@@ -143,10 +143,8 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
       const a = document.createElement('a');
       const isExternal = p.url.startsWith('http');
       a.href = isExternal ? p.url : BASE_PATH + p.url;
-      if (isExternal) {
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-      }
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
       a.appendChild(article);
       containerElement.appendChild(a);
     } else {
