@@ -198,9 +198,16 @@ body {
 
 
 .intro {
-  margin-top: 4.5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0;
   margin-bottom: 5rem;
   max-width: 72rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  box-sizing: border-box;
 }
 
 .intro .eyebrow {
