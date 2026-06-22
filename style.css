@@ -198,16 +198,13 @@ body {
 
 
 .intro {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 0;
-  margin-bottom: 5rem;
+  margin-top: 5rem;
+  margin-bottom: 0;
   max-width: 72rem;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  box-sizing: border-box;
+}
+
+.intro .intro-body {
+  margin-bottom: 0;
 }
 
 .intro .eyebrow {
@@ -442,6 +439,18 @@ h1 {
   margin-top: var(--space-6);
 }
 
+
+.homepage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+.projects-section {
+  margin-top: 1.5rem;
+}
 
 .projects {
   display: grid;
