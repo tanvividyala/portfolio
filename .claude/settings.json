@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open \"index.html\")",
+      "Bash(python3 -m http.server 8000 --directory \"/Users/tvidyala/Documents/Github Repos/portfolio\")",
+      "Bash(curl -sI http://localhost:8000/index.html)",
+      "Bash(open http://localhost:8000/index.html)",
+      "Bash(rm -rf ~/Library/Caches/com.apple.MobileSMS ~/Library/Caches/Google ~/Library/Caches/pip '~/Library/Caches/Google Earth' ~/Library/Caches/com.spotify.client ~/Library/Caches/com.microsoft.VSCode.ShipIt ~/Library/Caches/Yarn ~/Library/Caches/ms-playwright ~/Library/Caches/com.figma.Desktop.ShipIt ~/Library/Caches/pnpm)",
+      "Bash(rm -rf ~/Library/Caches/\"Google Earth\")",
+      "Bash(open http://localhost:8000/projects/index.html)"
+    ]
+  }
+}

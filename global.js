@@ -36,27 +36,6 @@ let pages = [
   { url: 'https://github.com/tanvividyala', title: 'GitHub' },
 ];
 
-const themeToggle = document.createElement('button');
-themeToggle.className = 'color-scheme-toggle';
-themeToggle.setAttribute('aria-label', 'Toggle light/dark mode');
-themeToggle.innerHTML = `<span class="toggle-icon">☀</span><span class="toggle-track"><span class="toggle-thumb"></span></span><span class="toggle-icon">☾</span>`;
-
-function setColorScheme(scheme) {
-  document.documentElement.style.setProperty('color-scheme', scheme);
-  document.documentElement.setAttribute('data-color-scheme', scheme);
-}
-
-const stored = localStorage.colorScheme;
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-setColorScheme(stored || (prefersDark ? 'dark' : 'light'));
-
-themeToggle.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-color-scheme');
-  const next = current === 'dark' ? 'light' : 'dark';
-  localStorage.colorScheme = next;
-  setColorScheme(next);
-});
-
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
@@ -69,8 +48,6 @@ nav.appendChild(logo);
 const navLinks = document.createElement('div');
 navLinks.className = 'nav-links';
 nav.appendChild(navLinks);
-
-nav.appendChild(themeToggle);
 
 const hamburger = document.createElement('button');
 hamburger.className = 'nav-hamburger';

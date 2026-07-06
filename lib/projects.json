@@ -55,17 +55,6 @@
     },
 
     {
-    "title": "Hype vs. Hyperpigmentation",
-    "year": "2025",
-    "image": "https://png.pngtree.com/png-clipart/20220729/ourmid/pngtree-skincare-routine-png-image_6092051.png",
-    "description": "Comparing cultural trends in skincare marketing with data analysis.",
-    "url": "projects/hype/",
-    "eyebrow": "Comparing cultural trends in skincare marketing with data analysis",
-    "tags": ["python", "d3.js", "analysis"],
-    "linkLabel": "writeup"
-    },
-
-    {
     "title": "In Their Shoes",
     "year": "2022",
     "image": "https://cdn-icons-png.flaticon.com/512/994/994202.png",
