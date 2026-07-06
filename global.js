@@ -24,9 +24,12 @@ if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
     dir = dir.replace(/[^/]+\/$/, '');
   }
   BASE_PATH = dir;
-} else {
-  // GitHub Pages
+} else if (location.hostname.endsWith("github.io")) {
+  // GitHub Pages project site (served under /portfolio/)
   BASE_PATH = "/portfolio/";
+} else {
+  // Custom domain (served at root)
+  BASE_PATH = "/";
 }
 
 let pages = [
