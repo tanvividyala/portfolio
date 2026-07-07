@@ -45,12 +45,30 @@ document.body.prepend(nav);
 const logo = document.createElement('a');
 logo.className = 'nav-logo';
 logo.href = BASE_PATH;
-logo.innerHTML = `<span class="nav-logo__mark">tv</span><span class="nav-logo__name">tanvi.</span>`;
+logo.innerHTML = `<span class="nav-logo__mark"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 8.5L7.5 2.3M12 8.5L16.5 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="butt"/><rect x="2.5" y="8.5" width="19" height="11" rx="1.3" fill="currentColor"/></svg></span><span class="nav-logo__name">tanvi vidyala</span>`;
 nav.appendChild(logo);
 
 const navLinks = document.createElement('div');
 navLinks.className = 'nav-links';
 nav.appendChild(navLinks);
+
+// Theme toggle: light/dark, persisted in localStorage, defaulting to
+// the OS preference on first visit. The initial value is already
+// applied synchronously by the inline script in <head> to avoid a
+// flash of the wrong theme; this just wires up the click handler.
+const themeToggle = document.createElement('button');
+themeToggle.className = 'theme-toggle';
+themeToggle.setAttribute('aria-label', 'Toggle dark mode');
+themeToggle.innerHTML = `
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+`;
+themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem('theme', next); } catch {}
+});
+nav.appendChild(themeToggle);
 
 const hamburger = document.createElement('button');
 hamburger.className = 'nav-hamburger';
@@ -101,7 +119,7 @@ for (let p of pages) {
 
 export function renderProjects(project, containerElement, headingLevel = 'h2') {
   containerElement.innerHTML = '';
-  for (const p of project) {
+  project.forEach((p, i) => {
     const imgSrc = p.image?.startsWith('http') ? p.image : BASE_PATH + (p.image ?? '');
     const tagsHTML = p.tags?.length
       ? `<div class="card-tags">${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>`
@@ -112,6 +130,8 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
         </div>`
       : '';
     const article = document.createElement('article');
+    article.className = 'reveal';
+    article.style.transitionDelay = `${Math.min(i, 8) * 60}ms`;
     article.innerHTML = `
       <div class="card-top">
         <div class="card-icon"><img src="${imgSrc}" alt=""></div>
@@ -134,8 +154,27 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
     } else {
       containerElement.appendChild(article);
     }
-  }
+  });
+  observeReveals(containerElement);
 }
+
+// Scroll reveal: fades/slides .reveal elements in as they enter the
+// viewport. Applied to project cards (above) and to any static
+// .reveal markup already in the page at load time.
+const revealObserver = new IntersectionObserver((entries) => {
+  for (const entry of entries) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('reveal--in');
+      revealObserver.unobserve(entry.target);
+    }
+  }
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+function observeReveals(root = document) {
+  root.querySelectorAll('.reveal:not(.reveal--in)').forEach((el) => revealObserver.observe(el));
+}
+
+observeReveals();
 
 document.body.insertAdjacentHTML('beforeend', `
   <footer class="site-footer">
