@@ -141,8 +141,7 @@
 }
 
 /* Reusable liquid-glass surface: frosted blur + glossy top sheen +
-   a bright glass "rim" border. Add .glass-sheen for the extra
-   specular highlight blob (buttons, orbs, icons). */
+   a bright glass "rim" border. */
 .glass {
   position: relative;
   background:
@@ -152,20 +151,6 @@
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   border: 1px solid var(--glass-edge-dim);
   box-shadow: var(--glass-shadow);
-}
-
-.glass-sheen {
-  overflow: hidden;
-}
-
-.glass-sheen::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(125deg, var(--glass-sheen) 0%, transparent 35%);
-  opacity: 0.9;
-  pointer-events: none;
 }
 
 /* ── Dark theme ───────────────────────────────────────────────
@@ -732,8 +717,6 @@ h1 {
   min-height: 0;
   position: relative;
   overflow: hidden;
-  transition: box-shadow var(--dur-quick) var(--ease-out),
-              border-color var(--dur-quick) var(--ease-out);
 }
 
 .projects article::after {
@@ -745,7 +728,6 @@ h1 {
   width: 45%;
   background: linear-gradient(115deg, transparent, var(--glass-sheen-soft), transparent);
   transform: skewX(-20deg);
-  transition: left var(--dur-slow) var(--ease-out);
   pointer-events: none;
 }
 
@@ -865,6 +847,14 @@ h1 {
   display: flex;
   align-items: center;
   gap: 0.3rem;
+}
+
+.projects a:hover .card-link {
+  color: var(--accent);
+}
+
+.projects a:hover .card-link .arrow {
+  transform: translateX(3px);
 }
 
 #projects-pie-plot {
@@ -1481,13 +1471,6 @@ textarea.field__input {
   max-width: 34rem;
   padding: var(--space-6);
   border-radius: var(--radius-xl);
-  background:
-    linear-gradient(180deg, var(--glass-sheen-soft), transparent 55%),
-    var(--bg-elevated);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1px solid var(--glass-edge-dim);
-  box-shadow: var(--glass-shadow);
 }
 
 .contact-card form {
