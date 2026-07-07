@@ -2,7 +2,7 @@
     {
     "title": "SolarIQ",
     "year": "2026",
-    "image": "images/solariq.png",
+    "image": "images/icons/solariq.svg",
     "description": "Business intelligence dashboard for ZenPower.",
     "url": "https://github.com/ShamitaGoyal/solar-iq",
     "eyebrow": "BI dashboard for a solar energy startup",
@@ -13,18 +13,18 @@
     {
     "title": "Convolyzer",
     "year": "2026",
-    "image": "https://cdn.creazilla.com/cliparts/7928265/speech-balloon-clipart-original.png",
-    "description": "Message history and visualization tool hosted on Streamlit.",
-    "url": "https://convolyzer.streamlit.app/",
+    "image": "images/icons/convolyzer.svg",
+    "description": "In-browser conversation analytics powered by Claude and local ML.",
+    "url": "https://github.com/tanvividyala/convolyzer/",
     "eyebrow": "Building a tool to analyze conversation history",
-    "tags": ["python", "streamlit"],
+    "tags": ["react", "typescript", "vite", "claude api"],
     "linkLabel": "view"
     },
 
     {
     "title": "Dexteria Optimization Report",
     "year": "2025",
-    "image": "https://cdn-icons-png.flaticon.com/512/3063/3063198.png",
+    "image": "images/icons/dexteria.svg",
     "description": "Improving occupational therapy app engagement through analytics insights.",
     "url": "projects/dexteria/",
     "eyebrow": "Improving occupational therapy app engagement through analytics insights",
@@ -35,7 +35,7 @@
     {
     "title": "Creators of Human-like AI Weigh in on Ethics And Neurodivergence",
     "year": "2025",
-    "image": "https://cdn-icons-png.freepik.com/512/12443/12443802.png",
+    "image": "images/icons/facct.svg",
     "description": "ACM FaaCT 2025 paper uncovering missed accessibility gaps in human-like AI systems.",
     "url": "https://arxiv.org/abs/2506.12098",
     "eyebrow": "Uncovering missed accessibility gaps in human-like AI systems",
@@ -46,7 +46,7 @@
     {
     "title": "High-Context vs. Low-Context Sensitivity in LLMs",
     "year": "2025",
-    "image": "https://png.pngtree.com/png-vector/20221024/ourmid/pngtree-global-travel-site-language-vector-png-image_34387518.png",
+    "image": "images/icons/context-llm.svg",
     "description": "Do LLMs assign significantly lower surprisal to low-context speech acts compared to high-context equivalents?",
     "url": "https://tanvividyala.github.io/context-sensitivity-llms/",
     "eyebrow": "Evaluating context sensitivity and cultural bias in large language models",
@@ -57,7 +57,7 @@
     {
     "title": "In Their Shoes",
     "year": "2022",
-    "image": "https://cdn-icons-png.flaticon.com/512/994/994202.png",
+    "image": "images/icons/intheirshoes.svg",
     "description": "Designing an engaging, accessible storybook to uplift neurodiversity.",
     "url": "projects/intheirshoes/",
     "eyebrow": "Designing an engaging, accessible storybook to uplift neurodiversity",
@@ -68,7 +68,7 @@
     {
     "title": "OCCTIVE",
     "year": "2025",
-    "image": "https://cdn-icons-png.flaticon.com/512/1336/1336494.png",
+    "image": "images/icons/occtive.svg",
     "description": "Building an EdTech platform to help students learn CS.",
     "url": "https://occtive.github.io/www/",
     "eyebrow": "Building an EdTech platform to help students learn CS",

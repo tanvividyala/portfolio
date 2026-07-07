@@ -701,6 +701,36 @@ h1 {
   border-bottom: 1px solid var(--border);
 }
 
+.section-h2-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.section-h2-link .arrow {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity var(--dur-quick) var(--ease-out), transform var(--dur-quick) var(--ease-out);
+}
+
+.section-h2-link .arrow svg {
+  width: 1em;
+  height: 1em;
+}
+
+.section-h2-link:hover .section-h2 {
+  color: var(--accent);
+}
+
+.section-h2-link:hover .arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
 .projects a {
   text-decoration: none;
 }
@@ -764,10 +794,21 @@ h1 {
   flex-shrink: 0;
 }
 
-.card-icon img {
+.card-icon-glyph {
   width: 1.4rem;
   height: 1.4rem;
-  object-fit: contain;
+  background-color: var(--fg-muted);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color 0.2s ease;
+}
+
+.projects a:hover .card-icon-glyph {
+  background-color: var(--accent);
 }
 
 .card-year {
@@ -836,7 +877,7 @@ h1 {
   justify-content: flex-end;
   padding-top: 0.85rem;
   margin-top: 1rem;
-  border-top: 1px dashed var(--border-strong);
+  border-top: 1px solid var(--border);
 }
 
 .card-link {
@@ -1410,6 +1451,7 @@ textarea.field__input {
 
 .skills-section {
   position: relative;
+  margin-top: 4rem;
 }
 
 .skills-section::after {
@@ -1453,7 +1495,8 @@ textarea.field__input {
   box-shadow: var(--shadow-sm);
 }
 
-.skill-chip__icon img {
+.skill-chip__icon img,
+.skill-chip__icon svg {
   width: 1.8rem;
   height: 1.8rem;
 }
@@ -1488,6 +1531,30 @@ textarea.field__input {
   margin-left:  calc(-1 * max(0px, (100vw - 1200px) / 2) - 4rem);
   margin-right: calc(-1 * max(0px, (100vw - 1200px) / 2) - 4rem);
   margin-bottom: -2rem;
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.footer-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.footer-mark {
+  flex: 0 0 auto;
+  width: clamp(12rem, 20vw, 20rem);
+  height: auto;
+  opacity: 0.95;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.footer-mark:hover {
+  transform: rotate(-4deg) scale(1.03);
 }
 
 .footer-eyebrow {
@@ -1651,5 +1718,14 @@ textarea.field__input {
     padding-right: 1.5rem;
     margin-left: -1.5rem;
     margin-right: -1.5rem;
+  }
+
+  .footer-contact {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-mark {
+    display: none;
   }
 }

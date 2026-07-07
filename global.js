@@ -35,8 +35,6 @@ if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
 let pages = [
   { url: '', title: 'Home' },
   { url: 'projects/', title: 'Projects' },
-  { url: 'resume/', title: 'Resume' },
-  { url: 'https://github.com/tanvividyala', title: 'GitHub' },
 ];
 
 let nav = document.createElement('nav');
@@ -134,7 +132,7 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
     article.style.transitionDelay = `${Math.min(i, 8) * 60}ms`;
     article.innerHTML = `
       <div class="card-top">
-        <div class="card-icon"><img src="${imgSrc}" alt=""></div>
+        <div class="card-icon"><span class="card-icon-glyph" style="mask-image:url('${imgSrc}');-webkit-mask-image:url('${imgSrc}')"></span></div>
         <span class="card-year">${p.year ?? ''}</span>
       </div>
       ${p.eyebrow ? `<p class="card-eyebrow">— ${p.eyebrow}</p>` : ''}
@@ -179,25 +177,32 @@ observeReveals();
 document.body.insertAdjacentHTML('beforeend', `
   <footer class="site-footer">
     <div class="footer-contact">
-      <p class="footer-eyebrow">— I'D LOVE TO CONNECT WITH YOU</p>
-      <h2 class="footer-heading">Come say hello!</h2>
-      <div class="footer-rows">
-        <div class="footer-row">
-          <span class="footer-label">EMAIL</span>
-          <a href="mailto:tvidyala@ucsd.edu" class="footer-value">tvidyala@ucsd.edu</a>
-        </div>
-        <div class="footer-row">
-          <span class="footer-label">LINKEDIN</span>
-          <a href="https://linkedin.com/in/tanvividyala" class="footer-value" target="_blank" rel="noopener noreferrer">/in/tanvividyala</a>
-        </div>
-        <div class="footer-row">
-          <span class="footer-label">GITHUB</span>
-          <a href="https://github.com/tanvividyala" class="footer-value" target="_blank" rel="noopener noreferrer">/tanvividyala</a>
+      <div class="footer-text">
+        <p class="footer-eyebrow">— I'D LOVE TO CONNECT WITH YOU</p>
+        <h2 class="footer-heading">Come say hello!</h2>
+        <div class="footer-rows">
+          <div class="footer-row">
+            <span class="footer-label">EMAIL</span>
+            <a href="mailto:tvidyala@ucsd.edu" class="footer-value">tvidyala@ucsd.edu</a>
+          </div>
+          <div class="footer-row">
+            <span class="footer-label">LINKEDIN</span>
+            <a href="https://linkedin.com/in/tanvividyala" class="footer-value" target="_blank" rel="noopener noreferrer">/in/tanvividyala</a>
+          </div>
+          <div class="footer-row">
+            <span class="footer-label">GITHUB</span>
+            <a href="https://github.com/tanvividyala" class="footer-value" target="_blank" rel="noopener noreferrer">/tanvividyala</a>
+          </div>
+          <div class="footer-row">
+            <span class="footer-label">RESUME</span>
+            <a href="#" class="footer-value">view resume</a>
+          </div>
         </div>
       </div>
+      <img class="footer-mark" src="${BASE_PATH}images/tanvi.svg" alt="" aria-hidden="true">
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© TANVI VIDYALA · UCSD COGSCI '26</span>
+      <span class="footer-copy">© TANVI VIDYALA</span>
     </div>
   </footer>
 `);
