@@ -35,6 +35,7 @@ if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
 let pages = [
   { url: '', title: 'Home' },
   { url: 'projects/', title: 'Projects' },
+  { url: 'https://drive.google.com/file/d/1-wUAzcKt9h2RGwp54iBRYk6b36fjFVtN/view?usp=sharing', title: 'Resume' },
 ];
 
 let nav = document.createElement('nav');
@@ -49,24 +50,6 @@ nav.appendChild(logo);
 const navLinks = document.createElement('div');
 navLinks.className = 'nav-links';
 nav.appendChild(navLinks);
-
-// Theme toggle: light/dark, persisted in localStorage, defaulting to
-// the OS preference on first visit. The initial value is already
-// applied synchronously by the inline script in <head> to avoid a
-// flash of the wrong theme; this just wires up the click handler.
-const themeToggle = document.createElement('button');
-themeToggle.className = 'theme-toggle';
-themeToggle.setAttribute('aria-label', 'Toggle dark mode');
-themeToggle.innerHTML = `
-  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-  <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-`;
-themeToggle.addEventListener('click', () => {
-  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  document.documentElement.dataset.theme = next;
-  try { localStorage.setItem('theme', next); } catch {}
-});
-nav.appendChild(themeToggle);
 
 const hamburger = document.createElement('button');
 hamburger.className = 'nav-hamburger';
@@ -135,7 +118,7 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
         <div class="card-icon"><span class="card-icon-glyph" style="mask-image:url('${imgSrc}');-webkit-mask-image:url('${imgSrc}')"></span></div>
         <span class="card-year">${p.year ?? ''}</span>
       </div>
-      ${p.eyebrow ? `<p class="card-eyebrow">— ${p.eyebrow}</p>` : ''}
+      ${p.eyebrow ? `<p class="card-eyebrow">${p.eyebrow}</p>` : ''}
       <${headingLevel} class="card-title">${p.title}</${headingLevel}>
       <p class="card-desc">${p.description}</p>
       ${tagsHTML}
@@ -152,6 +135,24 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
     } else {
       containerElement.appendChild(article);
     }
+  });
+  observeReveals(containerElement);
+}
+
+export function renderProjectList(items, containerElement) {
+  if (!containerElement) return;
+  containerElement.innerHTML = '';
+  items.forEach((p, i) => {
+    const isExternal = p.url?.startsWith('http');
+    const href = isExternal ? p.url : BASE_PATH + (p.url ?? '');
+    const li = document.createElement('li');
+    li.className = 'reveal';
+    li.style.transitionDelay = `${Math.min(i, 8) * 60}ms`;
+    li.innerHTML = `
+      <a href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}>${p.eyebrow ?? p.description}</a>
+      ${p.year ? `<span class="list-date">${p.year}</span>` : ''}
+    `;
+    containerElement.appendChild(li);
   });
   observeReveals(containerElement);
 }
@@ -178,34 +179,84 @@ document.body.insertAdjacentHTML('beforeend', `
   <footer class="site-footer">
     <div class="footer-contact">
       <div class="footer-text">
-        <p class="footer-eyebrow">— I'D LOVE TO CONNECT WITH YOU</p>
+        <p class="footer-eyebrow">I'D LOVE TO CONNECT WITH YOU</p>
         <h2 class="footer-heading">Come say hello!</h2>
         <div class="footer-rows">
           <div class="footer-row">
-            <span class="footer-label">EMAIL</span>
+            <span class="footer-label"><svg class="footer-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>EMAIL</span>
             <a href="mailto:tvidyala@ucsd.edu" class="footer-value">tvidyala@ucsd.edu</a>
           </div>
           <div class="footer-row">
-            <span class="footer-label">LINKEDIN</span>
+            <span class="footer-label"><svg class="footer-row__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LINKEDIN</span>
             <a href="https://linkedin.com/in/tanvividyala" class="footer-value" target="_blank" rel="noopener noreferrer">/in/tanvividyala</a>
           </div>
           <div class="footer-row">
-            <span class="footer-label">GITHUB</span>
+            <span class="footer-label"><svg class="footer-row__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.42-1.305.763-1.605-2.665-.303-5.466-1.334-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GITHUB</span>
             <a href="https://github.com/tanvividyala" class="footer-value" target="_blank" rel="noopener noreferrer">/tanvividyala</a>
           </div>
           <div class="footer-row">
-            <span class="footer-label">RESUME</span>
-            <a href="#" class="footer-value">view resume</a>
+            <span class="footer-label"><svg class="footer-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6M9 9h1"/></svg>RESUME</span>
+            <a href="https://drive.google.com/file/d/1-wUAzcKt9h2RGwp54iBRYk6b36fjFVtN/view?usp=sharing" class="footer-value" target="_blank" rel="noopener noreferrer">view resume</a>
           </div>
         </div>
       </div>
-      <img class="footer-mark" src="${BASE_PATH}images/tanvi.svg" alt="" aria-hidden="true">
+      <div class="footer-carousel">
+        <div class="footer-carousel__track">
+          <figure class="footer-carousel__slide is-active">
+            <img src="${BASE_PATH}images/tanvi1.jpeg" alt="Tanvi and her dog Eevee">
+            <figcaption>me &amp; my dog eevee</figcaption>
+          </figure>
+          <figure class="footer-carousel__slide">
+            <img src="${BASE_PATH}images/tanvi2.jpg" alt="Tanvi at Omegamart">
+            <figcaption>at omegamart, the coolest place ever</figcaption>
+          </figure>
+          <figure class="footer-carousel__slide">
+            <img src="${BASE_PATH}images/tanvi3.jpg" alt="Tanvi">
+            <figcaption>fun fact, i used to want to be a psychologist!</figcaption>
+          </figure>
+          <button class="footer-carousel__arrow footer-carousel__arrow--prev" aria-label="Previous photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="footer-carousel__arrow footer-carousel__arrow--next" aria-label="Next photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="footer-carousel__dots">
+          <button class="footer-carousel__dot is-active" aria-label="Show photo 1"></button>
+          <button class="footer-carousel__dot" aria-label="Show photo 2"></button>
+          <button class="footer-carousel__dot" aria-label="Show photo 3"></button>
+        </div>
+      </div>
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© TANVI VIDYALA</span>
     </div>
   </footer>
 `);
+
+// Footer photo carousel: navigate with arrows or dots.
+{
+  const carousel = document.querySelector('.footer-carousel');
+  if (carousel) {
+    const slides = $$('.footer-carousel__slide', carousel);
+    const dots = $$('.footer-carousel__dot', carousel);
+    const prevBtn = carousel.querySelector('.footer-carousel__arrow--prev');
+    const nextBtn = carousel.querySelector('.footer-carousel__arrow--next');
+    let current = 0;
+
+    function goTo(index) {
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    prevBtn?.addEventListener('click', () => goTo(current - 1));
+    nextBtn?.addEventListener('click', () => goTo(current + 1));
+  }
+}
 
 export async function fetchGitHubData(username) {
   return fetchJSON(`https://api.github.com/users/${username}`);

@@ -27,7 +27,22 @@
       "Bash(lsof -i :8000 -sTCP:LISTEN)",
       "Bash(python3 -m http.server 8000)",
       "Bash(disown)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8000/index.html)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8000/index.html)",
+      "Bash(grep -Hm1 ^description: '/Users/tvidyala/Documents/Github Repos/portfolio/.claude/skills/*/SKILL.md')",
+      "Bash(python3 -c \"import playwright\")",
+      "Bash(npx --yes playwright --version)",
+      "Bash(node shot.js)",
+      "Bash(pkill -f \"http.server 8811\")",
+      "Bash(node shot2.js)",
+      "Bash(open http://localhost:8811/)",
+      "Bash(python3 -m http.server 8934)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8934/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8934/images/tanvi1.jpeg)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8934/images/tanvi2.jpg)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8934/images/tanvi3.jpg)",
+      "Bash(pkill -f \"http.server 8934\")",
+      "Bash(sips -g pixelWidth -g pixelHeight images/tanvihero.png)",
+      "Bash(grep -rn \"— \\\\${p.eyebrow}\\\\|eyebrow\" \"/Users/tvidyala/Documents/Github Repos/portfolio/global.js\" \"/Users/tvidyala/Documents/Github Repos/portfolio/index.html\" \"/Users/tvidyala/Documents/Github Repos/portfolio/projects/index.html\" \"/Users/tvidyala/Documents/Github Repos/portfolio/resume/index.html\" \"/Users/tvidyala/Documents/Github Repos/portfolio/contact/index.html\")"
     ]
   }
 }

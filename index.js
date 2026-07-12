@@ -1,10 +1,8 @@
-import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
+import { fetchJSON, renderProjectList, fetchGitHubData } from './global.js';
 
 const projects = await fetchJSON('./lib/projects.json');
 
-const projectsContainer = document.querySelector('.projects');
-
-renderProjects(projects, projectsContainer, 'h2');
+renderProjectList(projects.filter(p => p.category === 'project'), document.querySelector('.projects-list'));
 
 const githubData = await fetchGitHubData('tanvividyala');
 
