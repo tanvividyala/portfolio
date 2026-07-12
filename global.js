@@ -44,7 +44,7 @@ document.body.prepend(nav);
 const logo = document.createElement('a');
 logo.className = 'nav-logo';
 logo.href = BASE_PATH;
-logo.innerHTML = `<span class="nav-logo__mark"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 8.5L7.5 2.3M12 8.5L16.5 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="butt"/><rect x="2.5" y="8.5" width="19" height="11" rx="1.3" fill="currentColor"/></svg></span><span class="nav-logo__name">tanvi vidyala</span>`;
+logo.innerHTML = `<span class="nav-logo__name">tanvi vidyala</span>`;
 nav.appendChild(logo);
 
 const navLinks = document.createElement('div');
@@ -203,15 +203,19 @@ document.body.insertAdjacentHTML('beforeend', `
       <div class="footer-carousel">
         <div class="footer-carousel__track">
           <figure class="footer-carousel__slide is-active">
-            <img src="${BASE_PATH}images/tanvi1.jpeg" alt="Tanvi and her dog Eevee">
+            <div class="footer-carousel__photo"><img src="${BASE_PATH}images/tanvihero.png" alt="Illustration of Tanvi"></div>
+            <figcaption>hi, i'm tanvi!</figcaption>
+          </figure>
+          <figure class="footer-carousel__slide">
+            <div class="footer-carousel__photo"><img src="${BASE_PATH}images/tanvi1.jpeg" alt="Tanvi and her dog Eevee"></div>
             <figcaption>me &amp; my dog eevee</figcaption>
           </figure>
           <figure class="footer-carousel__slide">
-            <img src="${BASE_PATH}images/tanvi2.jpg" alt="Tanvi at Omegamart">
+            <div class="footer-carousel__photo"><img src="${BASE_PATH}images/tanvi2.jpg" alt="Tanvi at Omegamart"></div>
             <figcaption>at omegamart, the coolest place ever</figcaption>
           </figure>
           <figure class="footer-carousel__slide">
-            <img src="${BASE_PATH}images/tanvi3.jpg" alt="Tanvi">
+            <div class="footer-carousel__photo"><img src="${BASE_PATH}images/tanvi3.jpg" alt="Tanvi"></div>
             <figcaption>fun fact, i used to want to be a psychologist!</figcaption>
           </figure>
           <button class="footer-carousel__arrow footer-carousel__arrow--prev" aria-label="Previous photo">
@@ -225,6 +229,7 @@ document.body.insertAdjacentHTML('beforeend', `
           <button class="footer-carousel__dot is-active" aria-label="Show photo 1"></button>
           <button class="footer-carousel__dot" aria-label="Show photo 2"></button>
           <button class="footer-carousel__dot" aria-label="Show photo 3"></button>
+          <button class="footer-carousel__dot" aria-label="Show photo 4"></button>
         </div>
       </div>
     </div>

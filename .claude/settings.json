@@ -42,7 +42,14 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8934/images/tanvi3.jpg)",
       "Bash(pkill -f \"http.server 8934\")",
       "Bash(sips -g pixelWidth -g pixelHeight images/tanvihero.png)",
-      "Bash(grep -rn \"— \\\\${p.eyebrow}\\\\|eyebrow\" \"/Users/tvidyala/Documents/Github Repos/portfolio/global.js\" \"/Users/tvidyala/Documents/Github Repos/portfolio/index.html\" \"/Users/tvidyala/Documents/Github Repos/portfolio/projects/index.html\" \"/Users/tvidyala/Documents/Github Repos/portfolio/resume/index.html\" \"/Users/tvidyala/Documents/Github Repos/portfolio/contact/index.html\")"
+      "Bash(grep -rn \"— \\\\${p.eyebrow}\\\\|eyebrow\" \"/Users/tvidyala/Documents/Github Repos/portfolio/global.js\" \"/Users/tvidyala/Documents/Github Repos/portfolio/index.html\" \"/Users/tvidyala/Documents/Github Repos/portfolio/projects/index.html\" \"/Users/tvidyala/Documents/Github Repos/portfolio/resume/index.html\" \"/Users/tvidyala/Documents/Github Repos/portfolio/contact/index.html\")",
+      "Bash(open \"http://localhost:8000/\")",
+      "Bash(sips -g pixelWidth -g pixelHeight \"/Users/tvidyala/Documents/Github Repos/portfolio/images/tanvihero.png\")",
+      "Bash(osascript -e 'tell application \"Google Chrome\" to tell active tab of front window to reload')",
+      "Bash(npx -y playwright --version)",
+      "Bash(osascript -e 'tell application \"Google Chrome\" to set bounds of front window to {100, 100, 500, 900}')",
+      "Bash(node shot3.js)",
+      "Bash(sips -g pixelWidth -g pixelHeight \"/Users/tvidyala/Documents/Github Repos/portfolio/images/tvicon.png\")"
     ]
   }
 }
