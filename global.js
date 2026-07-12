@@ -149,7 +149,7 @@ export function renderProjectList(items, containerElement) {
     li.className = 'reveal';
     li.style.transitionDelay = `${Math.min(i, 8) * 60}ms`;
     li.innerHTML = `
-      <a href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}>${p.eyebrow ?? p.description}</a>
+      <a href="${href}" target="_blank" rel="noopener noreferrer">${p.eyebrow ?? p.description}</a>
       ${p.year ? `<span class="list-date">${p.year}</span>` : ''}
     `;
     containerElement.appendChild(li);

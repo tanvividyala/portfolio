@@ -3,8 +3,8 @@
     "title": "How LLMs Work",
     "year": "2026",
     "image": "images/icons/context-llm.svg",
-    "description": "How LLMs work, a web demo for COGS 9 (Introduction to Cognitive Science).",
-    "url": "#",
+    "description": "A web demo covering the fundamentals of how LLM architecture for COGS 9 (Introduction to Cognitive Science).",
+    "url": "https://github.com/tanvividyala/llm-demo",
     "tags": ["ai", "llms", "education"],
     "linkLabel": "view",
     "category": "project"
@@ -58,7 +58,7 @@
     "title": "OCCTIVE",
     "year": "2025",
     "image": "images/icons/occtive.svg",
-    "description": "OCCTIVE, a dynamic platform used by 12+ universities to host CS learning material.",
+    "description": "A dynamic educational platform used by 12+ universities to host CS learning material for non-technical students.",
     "url": "https://occtive.github.io/www/",
     "tags": ["react", "javascript", "edtech"],
     "linkLabel": "view",
@@ -71,7 +71,7 @@
     "image": "images/icons/cuisine-classifier.svg",
     "description": "Using a classification model to understand regional differences in nutrition.",
     "url": "https://github.com/tanvividyala/cuisine-classifier",
-    "tags": ["python", "random forest", "ml"],
+    "tags": ["python", "scikit-learn", "ml"],
     "linkLabel": "view",
     "category": "project"
     }
