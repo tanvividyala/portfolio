@@ -3,7 +3,7 @@
     "title": "How LLMs Work",
     "year": "2026",
     "image": "images/icons/context-llm.svg",
-    "description": "A web demo covering the fundamentals of how LLM architecture for COGS 9 (Introduction to Cognitive Science).",
+    "description": "A web demo covering the fundamentals of how LLM architecture for COGS 9.",
     "url": "https://github.com/tanvividyala/llm-demo",
     "tags": ["ai", "llms", "education"],
     "linkLabel": "view",
