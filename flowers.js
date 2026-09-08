@@ -49,9 +49,11 @@ const PLACEMENTS = [
   { side: 'left',  top: '58%', size: 4.0, spin: 24, bob: 6.9, delay: -3.0 },
   { side: 'right', top: '65%', size: 3.3, spin: 30, bob: 7.1, delay: -2.1 },
   { side: 'left',  top: '74%', size: 3.2, spin: 32, bob: 6.4, delay: -0.7 },
-  { side: 'right', top: '81%', size: 3.7, spin: 27, bob: 7.6, delay: -3.9 },
-  { side: 'left',  top: '90%', size: 2.9, spin: 36, bob: 6.8, delay: -1.6 },
-  { side: 'right', top: '96%', size: 3.4, spin: 25, bob: 7.3, delay: -0.9 },
+  // `nudge` shifts a bloom in rem: positive moves it inward off its gutter
+  // edge, negative pushes it further out. These last two keep clear of the
+  // footer's contact rows.
+  { side: 'left',  top: '90%', size: 2.9, spin: 36, bob: 6.8, delay: -1.6, nudge: -2.5 },
+  { side: 'right', top: '96%', size: 3.4, spin: 25, bob: 7.3, delay: -0.9, nudge: 6 },
 ];
 
 const field = document.createElement('div');
@@ -63,7 +65,7 @@ for (const [i, spot] of PLACEMENTS.entries()) {
   flower.className = 'flower';
   flower.dataset.side = spot.side;
   flower.dataset.scheme = String(i % SCHEME_COUNT);
-  flower.style.cssText = `top:${spot.top};--size:${spot.size}rem;--spin:${spot.spin}s;--bob:${spot.bob}s;--delay:${spot.delay}s`;
+  flower.style.cssText = `top:${spot.top};--size:${spot.size}rem;--spin:${spot.spin}s;--bob:${spot.bob}s;--delay:${spot.delay}s;--nudge:${spot.nudge ?? 0}rem`;
   flower.innerHTML = `<span class="flower__bob"><span class="flower__pop">${FLOWER_SVG}</span></span>`;
   flower.addEventListener('click', () => bloom(flower));
   field.append(flower);

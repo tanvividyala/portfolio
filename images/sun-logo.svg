@@ -2,10 +2,12 @@
   <title id="sun-logo-title">Smiling sun with T and V for eyes</title>
 
   <defs>
-    <!-- One ray: comes to a point, but the round join softens the tip the
-         same way it softens the bottom of the V. Base tucks under the disc. -->
-    <path id="sun-ray" fill="#e2645d" stroke="#e2645d" stroke-width="7" stroke-linejoin="round"
-          d="M -13 -60 L 0 -98 L 13 -60 Z"/>
+    <!-- One ray: a broad wedge whose base is nearly as wide as the 30 degrees
+         it owns, so neighbouring rays leave only a shallow notch between them.
+         Round joins soften the tip and the two base corners; the base itself
+         tucks under the disc. -->
+    <path id="sun-ray" fill="#e2645d" stroke="#e2645d" stroke-width="10" stroke-linejoin="round"
+          d="M -19 -60 L 0 -104 L 19 -60 Z"/>
   </defs>
 
   <g transform="translate(128 128)">
@@ -23,11 +25,11 @@
     <use href="#sun-ray" transform="rotate(300)"/>
     <use href="#sun-ray" transform="rotate(330)"/>
 
-    <!-- Disc, still roomy enough for the initials to read -->
-    <circle r="63" fill="#eda23e"/>
+    <!-- Disc: about two thirds of the full width, the way the reference sits -->
+    <circle r="70" fill="#f2bb4d"/>
 
-    <!-- The whole face sits a touch below centre -->
-    <g transform="translate(0 7)">
+    <!-- The whole face sits a touch below centre, scaled with the bigger disc -->
+    <g transform="translate(0 7) scale(1.1)">
       <!-- Eyes: the initials, drawn as shapes so they never rely on a font -->
       <g fill="#2e1a16">
         <rect x="-40" y="-30" width="28" height="9" rx="1.5"/>

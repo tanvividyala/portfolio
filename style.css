@@ -362,10 +362,14 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  padding-left:  calc(max(0px, (100vw - 1008px) / 2) + 4rem);
-  padding-right: calc(max(0px, (100vw - 1008px) / 2) + 4rem);
+  padding-top: 0.925rem;
+  padding-bottom: 0.925rem;
+  /* The margins pull the bar out to the viewport edges (body is content-box,
+     so 880px + 2x4rem = the 1008px here). The padding is deliberately NOT the
+     same formula - it uses a wider 1440px band, so the logo and pills sit well
+     outside the body's text column instead of lining up with it. */
+  padding-left:  calc(max(0px, (100vw - 1200px) / 2) + 3rem);
+  padding-right: calc(max(0px, (100vw - 1200px) / 2) + 3rem);
   margin-left:  calc(-1 * max(0px, (100vw - 1008px) / 2) - 4rem);
   margin-right: calc(-1 * max(0px, (100vw - 1008px) / 2) - 4rem);
   transition: background-color var(--dur-slow) var(--ease-out);
@@ -383,8 +387,8 @@ nav {
 .nav-logo:hover { text-decoration: none; color: inherit; }
 
 .nav-logo__mark {
-  width: 4.3rem;
-  height: 4.3rem;
+  width: 3.8rem;
+  height: 3.8rem;
   flex-shrink: 0;
   transition: transform var(--dur-base) var(--ease-spring);
 }
@@ -1438,8 +1442,10 @@ textarea.field__input {
   background-color: var(--bg-sunken);
   padding-top: 4rem;
   padding-bottom: 4rem;
-  padding-left:  calc(max(0px, (100vw - 1008px) / 2) + 4rem);
-  padding-right: calc(max(0px, (100vw - 1008px) / 2) + 4rem);
+  /* Same content band as the nav, so the bar at the top and the bar at the
+     bottom line up edge to edge. */
+  padding-left:  calc(max(0px, (100vw - 1200px) / 2) + 3rem);
+  padding-right: calc(max(0px, (100vw - 1200px) / 2) + 3rem);
   margin-left:  calc(-1 * max(0px, (100vw - 1008px) / 2) - 4rem);
   margin-right: calc(-1 * max(0px, (100vw - 1008px) / 2) - 4rem);
   margin-bottom: -2rem;
@@ -1899,7 +1905,9 @@ textarea.field__input {
 .flower-field {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  /* Above the footer's sunken panel so the blooms stay fully visible as they
+     drift over it, but still under the sticky nav (z-index 100). */
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -1930,6 +1938,7 @@ textarea.field__input {
 
 .flower {
   position: absolute;
+  --fl-scale: 1.15;
   width: calc(var(--size, 2.2rem) * var(--fl-scale, 1));
   height: calc(var(--size, 2.2rem) * var(--fl-scale, 1));
   pointer-events: auto;
@@ -1937,15 +1946,15 @@ textarea.field__input {
   -webkit-tap-highlight-color: transparent;
 }
 
-.flower[data-side="left"]  { left: -0.8rem; }
-.flower[data-side="right"] { right: -0.8rem; }
+.flower[data-side="left"]  { left: calc(-0.8rem + var(--nudge, 0rem)); }
+.flower[data-side="right"] { right: calc(-0.8rem + var(--nudge, 0rem)); }
 
 /* Past this width the viewport gutters outside the text column are wide
    enough for the blooms to grow and sit further out. */
 @media (min-width: 1200px) {
-  .flower { --fl-scale: 1.45; }
-  .flower[data-side="left"]  { left: -4.4rem; }
-  .flower[data-side="right"] { right: -4.4rem; }
+  .flower { --fl-scale: 1.55; }
+  .flower[data-side="left"]  { left: calc(-7rem + var(--nudge, 0rem)); }
+  .flower[data-side="right"] { right: calc(-7rem + var(--nudge, 0rem)); }
 }
 
 .flower__bob,
@@ -2067,14 +2076,16 @@ textarea.field__input {
     gap: 2rem;
   }
 
+  /* Stacked, the two columns need a real gap between them - bigger than the
+     1.6rem between entries, so Previously reads as a new heading. */
   .roles-grid {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 2.75rem;
   }
 
   nav {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
     margin-left: -1.5rem;
     margin-right: -1.5rem;
     flex-wrap: wrap;
@@ -2129,8 +2140,8 @@ textarea.field__input {
   .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   .site-footer {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
     margin-left: -1.5rem;
     margin-right: -1.5rem;
   }
