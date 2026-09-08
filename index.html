@@ -3,37 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tanvi Vidyala's Personal Site</title>
+    <title>Hi! I'm Tanvi.</title>
     <meta name="description" content="Welcome to my personal site! My name is Tanvi Vidyala. I'm a Master's student at UC San Diego studying Data Science. I care deeply about education and building systems that are safe, transparent, and human-centered.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap">
     <script src="global.js" type="module"></script>
     <script src="index.js" type="module" defer></script>
-    <link rel="icon" type="image/png" href="images/tvicon.png">
+    <link rel="icon" type="image/svg+xml" href="images/tv-mark.svg">
+    <link rel="icon" type="image/png" href="images/tv-icon.png">
 </head>
 <body>
     <div class="homepage">
-      <img class="site-icon" src="images/tvicon.png" alt="Retro pink TV icon">
       <div class="intro">
         <div class="intro-main">
           <div class="intro-hero">
-            <h1>Hi, I'm Tanvi. I use data to decode <em class="em-highlight">why</em> people do <em class="em-highlight">what</em> they do.</h1>
+            <h1>Hi, I'm Tanvi!</h1>
           </div>
           <div class="intro-text">
-            <p class="intro-body reveal" style="transition-delay: 60ms">I'm an incoming Master's student at <strong>UC San Diego</strong> studying <strong>Data Science</strong>. I recently completed my Bachelor's in Cognitive Science at UC San Diego as well. I'm originally from the San Francisco Bay Area.</p>
-            <p class="intro-body reveal" style="transition-delay: 120ms">I care deeply about education and building systems that are safe, transparent, and human-centered. Always happy to connect! You can reach me at <a href="mailto:tvidyala@ucsd.edu"><strong>tvidyala@ucsd.edu</strong></a>.</p>
+            <p class="intro-body reveal" style="transition-delay: 120ms">I'm a Master's student at <strong>UC San Diego</strong> studying <strong>Data Science</strong>. I recently finished my Bachelor's in <strong>Cognitive Science</strong> there too, and I'm originally from the <strong>San Francisco Bay Area</strong>.</p>
+            <p class="intro-body reveal" style="transition-delay: 180ms">I'm drawn to how people make <strong>decisions and interact</strong> with digital products and campaigns. I'm also interested in making sure the <strong>AI systems</strong> we engage with are <strong>safe and transparent</strong>.</p>
+          </div>
+          <div class="pills-marquee reveal" style="transition-delay: 240ms">
+            <ul class="pills pills-track">
+              <li class="pill pill--sage">Causal Inference</li>
+              <li class="pill pill--coral">Data Storytelling</li>
+              <li class="pill pill--marigold">Explainable AI</li>
+              <li class="pill pill--cream">Education</li>
+              <li class="pill pill--mint">Accessibility</li>
+            </ul>
           </div>
         </div>
+        <button class="site-icon" type="button" aria-label="Retro TV. Click to change the channel.">
+          <svg class="site-icon__svg" viewBox="0 0 256 258" aria-hidden="true" focusable="false">
+            <defs>
+              <g id="petal-coral">
+                <path fill="#e2645d" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+                <path fill="#eda23e" transform="scale(0.70)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+                <path fill="#f2e3bd" transform="scale(0.46)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+                <path fill="#7fae9f" transform="scale(0.28)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+              </g>
+              <g id="petal-sage">
+                <path fill="#8ba07e" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+                <path fill="#eda23e" transform="scale(0.70)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+                <path fill="#f2e3bd" transform="scale(0.46)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+                <path fill="#e2645d" transform="scale(0.28)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+              </g>
+              <g id="flower-coral">
+                <use href="#petal-coral"/>
+                <use href="#petal-coral" transform="rotate(90)"/>
+                <use href="#petal-coral" transform="rotate(180)"/>
+                <use href="#petal-coral" transform="rotate(270)"/>
+                <circle r="7" fill="#5c2b26"/>
+                <circle r="4.4" fill="#e2645d"/>
+              </g>
+              <g id="flower-sage">
+                <use href="#petal-sage"/>
+                <use href="#petal-sage" transform="rotate(90)"/>
+                <use href="#petal-sage" transform="rotate(180)"/>
+                <use href="#petal-sage" transform="rotate(270)"/>
+                <circle r="7" fill="#5c2b26"/>
+                <circle r="4.4" fill="#8ba07e"/>
+              </g>
+              <pattern id="tv-screen-flowers" width="104" height="104" patternUnits="userSpaceOnUse">
+                <rect width="104" height="104" fill="#6b3a35"/>
+                <use href="#flower-sage" x="0" y="0"/>
+                <use href="#flower-sage" x="104" y="0"/>
+                <use href="#flower-sage" x="0" y="104"/>
+                <use href="#flower-sage" x="104" y="104"/>
+                <use href="#flower-coral" x="52" y="52"/>
+              </pattern>
+              <pattern id="tv-static-noise" width="8" height="8" patternUnits="userSpaceOnUse">
+                <rect width="8" height="8" fill="#3a2420"/>
+                <rect width="4" height="4" fill="#d8cfc0"/>
+                <rect x="4" y="4" width="4" height="4" fill="#8d8378"/>
+                <rect x="4" width="4" height="4" fill="#5c4a42"/>
+              </pattern>
+              <clipPath id="tv-screen-clip">
+                <rect x="32" y="96" width="138" height="116" rx="19"/>
+              </clipPath>
+            </defs>
+
+            <!-- Antennae -->
+            <g stroke="#aab6bf" stroke-width="4.5" stroke-linecap="round" fill="none">
+              <path d="M125 80 L55 20"/>
+              <path d="M131 80 L201 20"/>
+            </g>
+            <circle cx="55" cy="19" r="6" fill="#c5ced5"/>
+            <circle cx="201" cy="19" r="6" fill="#c5ced5"/>
+            <ellipse cx="128" cy="78" rx="17" ry="14" fill="#e2645d"/>
+
+            <!-- Cabinet -->
+            <rect x="10" y="74" width="236" height="160" rx="30" fill="#e2645d"/>
+            <path d="M10 200 h236 v4 a30 30 0 0 1 -30 30 H40 a30 30 0 0 1 -30 -30 Z" fill="#d1564f"/>
+
+            <!-- Screen: one channel showing at a time -->
+            <rect x="24" y="88" width="154" height="132" rx="26" fill="#c9524a"/>
+            <rect x="29" y="93" width="144" height="122" rx="22" fill="#3a2420"/>
+            <g class="tv-screen" clip-path="url(#tv-screen-clip)">
+              <g class="tv-channel is-on">
+                <rect x="32" y="96" width="138" height="116" fill="url(#tv-screen-flowers)"/>
+              </g>
+              <g class="tv-channel">
+                <rect x="32" y="96" width="23" height="116" fill="#8ba07e"/>
+                <rect x="55" y="96" width="23" height="116" fill="#eda23e"/>
+                <rect x="78" y="96" width="23" height="116" fill="#e2645d"/>
+                <rect x="101" y="96" width="23" height="116" fill="#f2e3bd"/>
+                <rect x="124" y="96" width="23" height="116" fill="#7fae9f"/>
+                <rect x="147" y="96" width="23" height="116" fill="#6b3a35"/>
+              </g>
+              <g class="tv-static">
+                <rect x="32" y="96" width="138" height="116" fill="url(#tv-static-noise)"/>
+              </g>
+            </g>
+
+            <!-- Control panel -->
+            <g fill="#c9524a">
+              <rect x="192" y="96" width="14" height="4" rx="2"/>
+              <rect x="212" y="96" width="14" height="4" rx="2"/>
+              <rect x="192" y="148" width="10" height="4" rx="2"/>
+              <rect x="208" y="148" width="18" height="4" rx="2"/>
+            </g>
+            <g>
+              <circle cx="210" cy="124" r="19" fill="#c5ced5"/>
+              <circle cx="210" cy="124" r="13" fill="#dfe5e9"/>
+              <circle class="tv-knob" cx="210" cy="124" r="4" fill="#8d9aa4"/>
+            </g>
+            <g>
+              <circle cx="210" cy="168" r="19" fill="#c5ced5"/>
+              <circle cx="210" cy="168" r="13" fill="#dfe5e9"/>
+              <circle cx="210" cy="168" r="4" fill="#8d9aa4"/>
+            </g>
+            <rect x="188" y="192" width="44" height="28" rx="7" fill="#dfe5e9"/>
+            <g fill="#a9b4bc">
+              <rect x="194" y="205" width="32" height="2.6" rx="1.3"/>
+              <rect x="194" y="210" width="32" height="2.6" rx="1.3"/>
+              <rect x="194" y="215" width="32" height="2.6" rx="1.3"/>
+            </g>
+            <circle cx="210" cy="197" r="8.5" fill="#c5ced5"/>
+            <path d="M206 199 l8 -4" stroke="#8d9aa4" stroke-width="2.6" stroke-linecap="round"/>
+
+            <!-- Lower fascia -->
+            <circle cx="34" cy="227" r="3.2" fill="#b8483f"/>
+            <rect x="46" y="223" width="8" height="9" rx="4" fill="#dfe5e9"/>
+            <g fill="#b8483f">
+              <rect x="69" y="223" width="2.4" height="9" rx="1.2"/>
+              <rect x="79" y="223" width="2.4" height="9" rx="1.2"/>
+              <rect x="89" y="223" width="2.4" height="9" rx="1.2"/>
+              <rect x="99" y="223" width="2.4" height="9" rx="1.2"/>
+              <rect x="109" y="223" width="2.4" height="9" rx="1.2"/>
+              <rect x="119" y="223" width="2.4" height="9" rx="1.2"/>
+              <rect x="129" y="223" width="2.4" height="9" rx="1.2"/>
+              <rect x="139" y="223" width="2.4" height="9" rx="1.2"/>
+            </g>
+            <circle cx="165" cy="227.5" r="5" fill="#dfe5e9"/>
+            <circle cx="181" cy="227.5" r="5" fill="#dfe5e9"/>
+            <g fill="#dfe5e9">
+              <rect x="199" y="223" width="9" height="9" rx="2.5"/>
+              <rect x="211" y="223" width="9" height="9" rx="2.5"/>
+              <rect x="223" y="223" width="9" height="9" rx="2.5"/>
+            </g>
+
+            <!-- Feet -->
+            <path d="M48 234 h30 l-6 16 h-18 Z" fill="#c14f48"/>
+            <path d="M178 234 h30 l-6 16 h-18 Z" fill="#c14f48"/>
+          </svg>
+        </button>
       </div>
-      <div class="list-section">
-        <h2 class="section-h2 reveal">Experience</h2>
-        <ul class="link-list">
-          <li class="reveal">Data Science Intern @ Kaiser Permanente <span class="list-date">Summer 2026</span></li>
-          <li class="reveal">Data Analyst Intern @ ATPCO <span class="list-date">Spring 2026</span></li>
-          <li class="reveal">Data Analyst Intern @ Kaiser Permanente <span class="list-date">Summer 2025</span></li>
+      <div class="roles-grid">
+      <div class="roles-section">
+        <h2 class="roles-heading reveal">Currently</h2>
+        <ul class="roles">
+          <li class="reveal">
+            <details class="role">
+              <summary class="role__line"><span class="role__label"><span class="role__org">AI Alignment at UC San Diego</span><em class="role__title">AI Safety Fellowship Lead</em></span></summary>
+              <p class="role__desc">Designing and teaching curriculum on AI safety, mechanistic interpretability, alignment, and governance for a competitive fellowship (13% acceptance rate), adapted from BlueDot Impact materials.</p>
+            </details>
+          </li>
+          <li class="reveal">
+            <details class="role">
+              <summary class="role__line"><span class="role__label"><span class="role__org">UCSD Department of Cognitive Science</span><em class="role__title">Graduate Teaching Assistant</em></span></summary>
+              <p class="role__desc">Building course material and teaching COGS 109 (Modeling and Data Analysis) to 120+ students.</p>
+            </details>
+          </li>
         </ul>
+      </div>
+      <div class="roles-section">
+        <h2 class="roles-heading reveal">Previously</h2>
+        <ul class="roles">
+          <li class="reveal">
+            <details class="role">
+              <summary class="role__line"><span class="role__label"><span class="role__org-row"><span class="role__org">Kaiser Permanente</span><span class="list-date">Summer 2026</span></span><em class="role__title">Data Science Intern</em></span></summary>
+              <p class="role__desc">Turning usage logs into insights that help allocate analytics resources across 100K+ users, from nurses and doctors to IT analysts and marketing strategists.</p>
+            </details>
+          </li>
+          <li class="reveal">
+            <details class="role">
+              <summary class="role__line"><span class="role__label"><span class="role__org-row"><span class="role__org">ATPCO</span><span class="list-date">Spring 2026</span></span><em class="role__title">Marketing Data Science Intern</em></span></summary>
+              <p class="role__desc">Building reporting infrastructure across marketing channels (web, social, email) and training models to assess high-value leads.</p>
+            </details>
+          </li>
+          <li class="reveal">
+            <details class="role">
+              <summary class="role__line"><span class="role__label"><span class="role__org-row"><span class="role__org">Kaiser Permanente</span><span class="list-date">Summer 2025</span></span><em class="role__title">Data Analytics Intern</em></span></summary>
+              <p class="role__desc">A/B testing and web optimization for KP.org, making sure their healthcare content reaches as many people as it can.</p>
+            </details>
+          </li>
+        </ul>
+      </div>
       </div>
       <div class="list-section">
         <h2 class="section-h2 reveal">Research</h2>

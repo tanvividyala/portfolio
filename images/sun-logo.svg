@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="sun-logo-title">
+  <title id="sun-logo-title">Smiling sun with T and V for eyes</title>
+
+  <defs>
+    <!-- One ray: comes to a point, but the round join softens the tip the
+         same way it softens the bottom of the V. Base tucks under the disc. -->
+    <path id="sun-ray" fill="#e2645d" stroke="#e2645d" stroke-width="7" stroke-linejoin="round"
+          d="M -13 -60 L 0 -98 L 13 -60 Z"/>
+  </defs>
+
+  <g transform="translate(128 128)">
+    <!-- Twelve rays -->
+    <use href="#sun-ray"/>
+    <use href="#sun-ray" transform="rotate(30)"/>
+    <use href="#sun-ray" transform="rotate(60)"/>
+    <use href="#sun-ray" transform="rotate(90)"/>
+    <use href="#sun-ray" transform="rotate(120)"/>
+    <use href="#sun-ray" transform="rotate(150)"/>
+    <use href="#sun-ray" transform="rotate(180)"/>
+    <use href="#sun-ray" transform="rotate(210)"/>
+    <use href="#sun-ray" transform="rotate(240)"/>
+    <use href="#sun-ray" transform="rotate(270)"/>
+    <use href="#sun-ray" transform="rotate(300)"/>
+    <use href="#sun-ray" transform="rotate(330)"/>
+
+    <!-- Disc, still roomy enough for the initials to read -->
+    <circle r="63" fill="#eda23e"/>
+
+    <!-- The whole face sits a touch below centre -->
+    <g transform="translate(0 7)">
+      <!-- Eyes: the initials, drawn as shapes so they never rely on a font -->
+      <g fill="#2e1a16">
+        <rect x="-40" y="-30" width="28" height="9" rx="1.5"/>
+        <rect x="-30.5" y="-30" width="9" height="32" rx="1.5"/>
+      </g>
+      <!-- Path is inset by half the stroke width so the V ends up the same
+           28 x 32 as the T, rather than the caps making it look bigger. -->
+      <path d="M 16.5 -25.5 L 26 -2.5 L 35.5 -25.5" fill="none" stroke="#2e1a16" stroke-width="9"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Smile -->
+      <path d="M -21 18 Q 0 37 21 18" fill="none" stroke="#2e1a16" stroke-width="8" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

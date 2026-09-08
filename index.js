@@ -1,4 +1,15 @@
 import { fetchJSON, renderProjectList, fetchGitHubData } from './global.js';
+import './tv.js';
+
+// The interest pills scroll as a marquee; a second copy of the track is what
+// makes the loop seamless. Cloned rather than written twice so the pills stay
+// edited in one place.
+const pillTrack = document.querySelector('.pills-track');
+if (pillTrack) {
+  const clone = pillTrack.cloneNode(true);
+  clone.setAttribute('aria-hidden', 'true');
+  pillTrack.after(clone);
+}
 
 const projects = await fetchJSON('./lib/projects.json');
 

@@ -7,7 +7,7 @@
   <meta name="description" content="Improving occupational therapy app engagement through analytics insights, Binary Labs App Optimization Case Study">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
   <style>
     /* ── Reset ──────────────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; }
@@ -22,35 +22,26 @@
     table { border-collapse: collapse; border-spacing: 0; }
     td, th { padding: 0; }
 
-    /* ── Fonts ──────────────────────────────────────────────────────────────── */
-    @font-face {
-      font-family: "Cooper Md BT";
-      src: url("../../fonts/CooperMdBT-Medium.ttf") format("truetype");
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-
     /* ── Design tokens ──────────────────────────────────────────────────────── */
     :root {
-      --poppy:       #d85455;
-      --sage:        #91ad94;
+      --poppy:       #e2645d;
+      --sage:        #8ba07e;
       --cream:       #fcfaf2;
-      --apricot:     #f1a97a;
-      --moss:        #60704e;
-      --moss-900:    #2f3a26;
+      --apricot:     #eda23e;
+      --moss:        #6b3a35;
+      --moss-900:    #3a2420;
       --cream-50:    #fffdf9;
       --cream-100:   #fcfaf2;
-      --cream-200:   #f5f1e4;
-      --cream-300:   #e8e3d2;
-      --moss-300:    #8a9776;
-      --moss-700:    #485636;
-      --poppy-200:   #f0b5b5;
-      --poppy-600:   #b8403f;
-      --apricot-200: #f9d4ba;
-      --apricot-600: #d98453;
-      --sage-200:    #c8d6c9;
-      --sage-600:    #6f8c73;
+      --cream-200:   #f5eeda;
+      --cream-300:   #ecdbae;
+      --moss-300:    #a3897f;
+      --moss-700:    #5c3a33;
+      --poppy-200:   #f6c6c2;
+      --poppy-600:   #c94c46;
+      --apricot-200: #fbdcac;
+      --apricot-600: #d98a2c;
+      --sage-200:    #d4ddc9;
+      --sage-600:    #718c68;
       --bg:          var(--cream-100);
       --bg-elevated: var(--cream-50);
       --bg-sunken:   var(--cream-200);
@@ -62,7 +53,7 @@
       --success:     var(--sage-600);
       --highlight:   var(--apricot);
       --border:      var(--cream-300);
-      --font-display:"Cooper Md BT", "Cooper BT", Georgia, serif;
+      --font-display:"Poppins", "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
       --font-sans:   "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
       --font-mono:   "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     }
@@ -94,7 +85,7 @@
     /* ── Headings ───────────────────────────────────────────────────────────── */
     .main-content h1 {
       font-family: var(--font-display);
-      font-weight: 500;
+      font-weight: 700;
       font-size: clamp(2.2rem, 3.5vw, 3rem);
       line-height: 1.05;
       letter-spacing: -0.02em;
@@ -105,7 +96,7 @@
     .main-content h2,
     .main-content h3 {
       font-family: var(--font-display);
-      font-weight: 500;
+      font-weight: 600;
       color: var(--fg);
       margin-top: 2rem;
       margin-bottom: 1rem;
@@ -249,7 +240,7 @@
     .main-content img {
       border-radius: 12px;
       border: 1px solid var(--border);
-      box-shadow: 0 4px 16px -4px rgba(47, 58, 38, 0.12);
+      box-shadow: 0 4px 16px -4px rgba(58, 36, 32, 0.12);
       display: block;
       margin: 1rem auto;
       max-width: 100%;
@@ -325,7 +316,7 @@
     .stat-card .stat-value {
       font-family: var(--font-display);
       font-size: clamp(1.9rem, 3vw, 2.4rem);
-      font-weight: 500;
+      font-weight: 700;
       color: var(--accent);
       line-height: 1;
       margin: 0 0 0.35rem;
@@ -415,7 +406,8 @@
       .site-footer { padding: 2rem 1.25rem; }
     }
   </style>
-    <link rel="icon" type="image/png" href="../../images/tvicon.png">
+    <link rel="icon" type="image/svg+xml" href="../../images/tv-mark.svg">
+    <link rel="icon" type="image/png" href="../../images/tv-icon.png">
 </head>
 <body>
 

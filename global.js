@@ -1,3 +1,5 @@
+import './flowers.js';
+
 console.log('IT\'S ALIVE!');
 
 function $$(selector, context = document) {
@@ -35,7 +37,7 @@ if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
 let pages = [
   { url: '', title: 'Home' },
   { url: 'projects/', title: 'Projects' },
-  { url: 'https://drive.google.com/file/d/1-wUAzcKt9h2RGwp54iBRYk6b36fjFVtN/view?usp=sharing', title: 'Resume' },
+  { url: 'https://drive.google.com/file/d/12KjI0e1KUp9v_S_9nJFfqiBH6tkNtmn9/view?usp=sharing', title: 'Resume' },
 ];
 
 let nav = document.createElement('nav');
@@ -44,7 +46,8 @@ document.body.prepend(nav);
 const logo = document.createElement('a');
 logo.className = 'nav-logo';
 logo.href = BASE_PATH;
-logo.innerHTML = `<span class="nav-logo__name">tanvi vidyala</span>`;
+logo.setAttribute('aria-label', 'Home');
+logo.innerHTML = `<img class="nav-logo__mark" src="${BASE_PATH}images/sun-logo.svg" alt="" aria-hidden="true">`;
 nav.appendChild(logo);
 
 const navLinks = document.createElement('div');
@@ -196,7 +199,7 @@ document.body.insertAdjacentHTML('beforeend', `
           </div>
           <div class="footer-row">
             <span class="footer-label"><svg class="footer-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6M9 9h1"/></svg>RESUME</span>
-            <a href="https://drive.google.com/file/d/1-wUAzcKt9h2RGwp54iBRYk6b36fjFVtN/view?usp=sharing" class="footer-value" target="_blank" rel="noopener noreferrer">view resume</a>
+            <a href="https://drive.google.com/file/d/12KjI0e1KUp9v_S_9nJFfqiBH6tkNtmn9/view?usp=sharing" class="footer-value" target="_blank" rel="noopener noreferrer">view resume</a>
           </div>
         </div>
       </div>
@@ -218,6 +221,10 @@ document.body.insertAdjacentHTML('beforeend', `
             <div class="footer-carousel__photo"><img src="${BASE_PATH}images/tanvi3.jpg" alt="Tanvi"></div>
             <figcaption>fun fact, i used to want to be a psychologist!</figcaption>
           </figure>
+          <figure class="footer-carousel__slide">
+            <div class="footer-carousel__photo"><img src="${BASE_PATH}images/tanvi4.png" alt="Tanvi singing at an open mic"></div>
+            <figcaption>Me at an open mic!</figcaption>
+          </figure>
           <button class="footer-carousel__arrow footer-carousel__arrow--prev" aria-label="Previous photo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
@@ -230,6 +237,7 @@ document.body.insertAdjacentHTML('beforeend', `
           <button class="footer-carousel__dot" aria-label="Show photo 2"></button>
           <button class="footer-carousel__dot" aria-label="Show photo 3"></button>
           <button class="footer-carousel__dot" aria-label="Show photo 4"></button>
+          <button class="footer-carousel__dot" aria-label="Show photo 5"></button>
         </div>
       </div>
     </div>

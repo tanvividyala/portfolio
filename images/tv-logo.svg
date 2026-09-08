@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 258" role="img" aria-labelledby="tv-logo-title">
+  <title id="tv-logo-title">Retro television with a flower pattern on its screen</title>
+
+  <defs>
+    <!-- One petal: a teardrop pointed at the flower's centre, with the same
+         shape nested inside itself at smaller scales. Scaling about (0,0)
+         keeps every layer sharing that point, which is what gives the
+         seventies pattern its pinwheel middle. -->
+    <g id="petal-coral">
+      <path fill="#e2645d" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+      <path fill="#eda23e" transform="scale(0.70)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+      <path fill="#f2e3bd" transform="scale(0.46)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+      <path fill="#7fae9f" transform="scale(0.28)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+    </g>
+
+    <g id="petal-sage">
+      <path fill="#8ba07e" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+      <path fill="#eda23e" transform="scale(0.70)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+      <path fill="#f2e3bd" transform="scale(0.46)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+      <path fill="#e2645d" transform="scale(0.28)" d="M0 0 L13.13 -18.86 A16 16 0 1 0 -13.13 -18.86 Z"/>
+    </g>
+
+    <g id="flower-coral">
+      <use href="#petal-coral"/>
+      <use href="#petal-coral" transform="rotate(90)"/>
+      <use href="#petal-coral" transform="rotate(180)"/>
+      <use href="#petal-coral" transform="rotate(270)"/>
+      <circle r="7" fill="#5c2b26"/>
+      <circle r="4.4" fill="#e2645d"/>
+    </g>
+
+    <g id="flower-sage">
+      <use href="#petal-sage"/>
+      <use href="#petal-sage" transform="rotate(90)"/>
+      <use href="#petal-sage" transform="rotate(180)"/>
+      <use href="#petal-sage" transform="rotate(270)"/>
+      <circle r="7" fill="#5c2b26"/>
+      <circle r="4.4" fill="#8ba07e"/>
+    </g>
+
+    <pattern id="tv-screen-flowers" width="104" height="104" patternUnits="userSpaceOnUse">
+      <rect width="104" height="104" fill="#6b3a35"/>
+      <use href="#flower-sage" x="0" y="0"/>
+      <use href="#flower-sage" x="104" y="0"/>
+      <use href="#flower-sage" x="0" y="104"/>
+      <use href="#flower-sage" x="104" y="104"/>
+      <use href="#flower-coral" x="52" y="52"/>
+    </pattern>
+  </defs>
+
+  <!-- ── Antennae ────────────────────────────────────────────── -->
+  <g stroke="#aab6bf" stroke-width="4.5" stroke-linecap="round" fill="none">
+    <path d="M125 80 L55 20"/>
+    <path d="M131 80 L201 20"/>
+  </g>
+  <circle cx="55" cy="19" r="6" fill="#c5ced5"/>
+  <circle cx="201" cy="19" r="6" fill="#c5ced5"/>
+  <ellipse cx="128" cy="78" rx="17" ry="14" fill="#e2645d"/>
+
+  <!-- ── Cabinet ─────────────────────────────────────────────── -->
+  <rect x="10" y="74" width="236" height="160" rx="30" fill="#e2645d"/>
+  <path d="M10 200 h236 v4 a30 30 0 0 1 -30 30 H40 a30 30 0 0 1 -30 -30 Z" fill="#d1564f"/>
+
+  <!-- ── Screen ──────────────────────────────────────────────── -->
+  <rect x="24" y="88" width="154" height="132" rx="26" fill="#c9524a"/>
+  <rect x="29" y="93" width="144" height="122" rx="22" fill="#3a2420"/>
+  <rect x="32" y="96" width="138" height="116" rx="19" fill="url(#tv-screen-flowers)"/>
+
+  <!-- ── Control panel ───────────────────────────────────────── -->
+  <g fill="#c9524a">
+    <rect x="192" y="96" width="14" height="4" rx="2"/>
+    <rect x="212" y="96" width="14" height="4" rx="2"/>
+    <rect x="192" y="148" width="10" height="4" rx="2"/>
+    <rect x="208" y="148" width="18" height="4" rx="2"/>
+  </g>
+
+  <g>
+    <circle cx="210" cy="124" r="19" fill="#c5ced5"/>
+    <circle cx="210" cy="124" r="13" fill="#dfe5e9"/>
+    <circle cx="210" cy="124" r="4" fill="#8d9aa4"/>
+  </g>
+
+  <g>
+    <circle cx="210" cy="168" r="19" fill="#c5ced5"/>
+    <circle cx="210" cy="168" r="13" fill="#dfe5e9"/>
+    <circle cx="210" cy="168" r="4" fill="#8d9aa4"/>
+  </g>
+
+  <rect x="188" y="192" width="44" height="28" rx="7" fill="#dfe5e9"/>
+  <g fill="#a9b4bc">
+    <rect x="194" y="205" width="32" height="2.6" rx="1.3"/>
+    <rect x="194" y="210" width="32" height="2.6" rx="1.3"/>
+    <rect x="194" y="215" width="32" height="2.6" rx="1.3"/>
+  </g>
+  <circle cx="210" cy="197" r="8.5" fill="#c5ced5"/>
+  <path d="M206 199 l8 -4" stroke="#8d9aa4" stroke-width="2.6" stroke-linecap="round"/>
+
+  <!-- ── Lower fascia ────────────────────────────────────────── -->
+  <circle cx="34" cy="227" r="3.2" fill="#b8483f"/>
+  <rect x="46" y="223" width="8" height="9" rx="4" fill="#dfe5e9"/>
+  <g fill="#b8483f">
+    <rect x="69" y="223" width="2.4" height="9" rx="1.2"/>
+    <rect x="79" y="223" width="2.4" height="9" rx="1.2"/>
+    <rect x="89" y="223" width="2.4" height="9" rx="1.2"/>
+    <rect x="99" y="223" width="2.4" height="9" rx="1.2"/>
+    <rect x="109" y="223" width="2.4" height="9" rx="1.2"/>
+    <rect x="119" y="223" width="2.4" height="9" rx="1.2"/>
+    <rect x="129" y="223" width="2.4" height="9" rx="1.2"/>
+    <rect x="139" y="223" width="2.4" height="9" rx="1.2"/>
+  </g>
+  <circle cx="165" cy="227.5" r="5" fill="#dfe5e9"/>
+  <circle cx="181" cy="227.5" r="5" fill="#dfe5e9"/>
+  <g fill="#dfe5e9">
+    <rect x="199" y="223" width="9" height="9" rx="2.5"/>
+    <rect x="211" y="223" width="9" height="9" rx="2.5"/>
+    <rect x="223" y="223" width="9" height="9" rx="2.5"/>
+  </g>
+
+  <!-- ── Feet ────────────────────────────────────────────────── -->
+  <path d="M48 234 h30 l-6 16 h-18 Z" fill="#c14f48"/>
+  <path d="M178 234 h30 l-6 16 h-18 Z" fill="#c14f48"/>
+</svg>
