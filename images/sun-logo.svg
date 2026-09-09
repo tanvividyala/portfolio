@@ -10,7 +10,7 @@
           d="M -19 -60 L 0 -104 L 19 -60 Z"/>
   </defs>
 
-  <g transform="translate(128 128)">
+  <g transform="translate(128 128) scale(1.14)">
     <!-- Twelve rays -->
     <use href="#sun-ray"/>
     <use href="#sun-ray" transform="rotate(30)"/>
