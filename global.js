@@ -36,7 +36,6 @@ if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
 
 let pages = [
   { url: '', title: 'Home' },
-  { url: 'projects/', title: 'Projects' },
   { url: 'https://drive.google.com/file/d/12KjI0e1KUp9v_S_9nJFfqiBH6tkNtmn9/view?usp=sharing', title: 'Resume' },
 ];
 
@@ -182,7 +181,6 @@ document.body.insertAdjacentHTML('beforeend', `
   <footer class="site-footer">
     <div class="footer-contact">
       <div class="footer-text">
-        <p class="footer-eyebrow">I'D LOVE TO CONNECT WITH YOU</p>
         <h2 class="footer-heading">Come say hello!</h2>
         <div class="footer-rows">
           <div class="footer-row">

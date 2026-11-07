@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap");
 
+@font-face {
+  font-family: "Cooper BT";
+  src: url("fonts/CooperMdBT-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* ── Color: core ──────────────────────────────────────────── */
   --poppy:   #e2645d;
@@ -71,7 +79,7 @@
   --rule:          var(--moss-700);
 
   /* ── Fonts ────────────────────────────────────────────────── */
-  --font-display: "Poppins", "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Cooper BT", "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-sans:    "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-mono:    "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
@@ -1041,14 +1049,14 @@ a:hover {
   border-radius: 50%;
 }
 
-circle {
+#chart circle {
   transition: all 200ms, r calc(var(--r) * 100ms);
   transform-origin: center;
   transform-box: fill-box;
 }
 
 @starting-style {
-  circle {
+  #chart circle {
     r: 0;
   }
 }
@@ -1067,7 +1075,7 @@ circle {
   opacity: 0;
 }
 
-circle.selected {
+#chart circle.selected {
   fill: #ff6b6b;
 }
 
@@ -1085,7 +1093,7 @@ circle.selected {
   animation: marching-ants 2s linear infinite;
 }
 
-circle:hover {
+#chart circle:hover {
   transform: scale(1.5);
 }
 
@@ -1363,68 +1371,6 @@ textarea.field__input {
   line-height: var(--lh-relaxed);
 }
 
-.skills-section {
-  position: relative;
-  margin-top: 4rem;
-  padding-top: 2.25rem;
-  border-top: 1px solid var(--border);
-}
-
-.skills-section::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 1rem;
-  right: 0;
-  width: 4rem;
-  background: linear-gradient(to right, transparent, var(--bg));
-  pointer-events: none;
-}
-
-.skills-scroll {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  padding: 0.25rem 0 1rem;
-  margin-bottom: -1rem;
-}
-
-.skill-chip {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  scroll-snap-align: start;
-}
-
-.skill-chip__icon {
-  width: 3.5rem;
-  height: 3.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  box-shadow: var(--shadow-sm);
-}
-
-.skill-chip__icon img,
-.skill-chip__icon svg {
-  width: 1.8rem;
-  height: 1.8rem;
-}
-
-.skill-chip span:last-child {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.02em;
-  color: var(--fg-muted);
-  white-space: nowrap;
-}
-
 /* ── Contact card ─────────────────────────────────────────── */
 .contact-card {
   max-width: 34rem;
@@ -1606,15 +1552,6 @@ textarea.field__input {
   transform: scale(1.2);
 }
 
-.footer-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 0 0 1rem;
-}
-
 .footer-heading {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -1708,85 +1645,6 @@ textarea.field__input {
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
 }
-
-/* ── Interest pills ───────────────────────────────────────── */
-.pills {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: 0;
-  padding: 0;
-}
-
-/* The pills don't fit across the narrower text column, so the row scrolls
-   as a marquee. index.js clones the track; the two copies chase each other
-   for a seamless loop, and hovering stops it so you can read them. */
-.pills-marquee {
-  display: flex;
-  gap: 0.75rem;
-  overflow: hidden;
-  width: 100%;
-  margin-top: 0.5rem;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 2.5rem, #000 calc(100% - 2.5rem), transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 2.5rem, #000 calc(100% - 2.5rem), transparent);
-}
-
-.pills-track {
-  flex: 0 0 auto;
-  flex-wrap: nowrap;
-  gap: 0.75rem;
-  animation: pills-marquee 24s linear infinite;
-}
-
-.pills-marquee:hover .pills-track {
-  animation-play-state: paused;
-}
-
-@keyframes pills-marquee {
-  to { transform: translateX(calc(-100% - 0.75rem)); }
-}
-
-/* No motion: let the pills simply wrap and drop the duplicate track. */
-@media (prefers-reduced-motion: reduce) {
-  .pills-marquee {
-    overflow: visible;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .pills-track {
-    animation: none;
-    flex-wrap: wrap;
-  }
-
-  .pills-track[aria-hidden="true"] {
-    display: none;
-  }
-}
-
-.pill {
-  font-size: 0.95rem;
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--fg);
-  background: var(--pill-bg, var(--sage-300));
-  border-radius: var(--radius-pill);
-  padding: 0.55em 1.15em;
-  transition: transform var(--dur-base) var(--ease-spring);
-}
-
-.pill:hover { transform: translateY(-3px); }
-
-/* Marquee pills only ever respond by pausing the scroll (see
-   .pills-marquee:hover above) — no per-pill lift while it's moving. */
-.pills-track .pill:hover { transform: none; }
-
-.pill--sage     { --pill-bg: var(--sage-300); }
-.pill--coral    { --pill-bg: var(--poppy-400); }
-.pill--marigold { --pill-bg: var(--apricot-300); }
-.pill--cream    { --pill-bg: var(--apricot-200); }
-.pill--mint     { --pill-bg: var(--mint-300); }
 
 /* ── Currently / Previously ───────────────────────────────── */
 /* Currently and Previously sit side by side, half the width each. */
